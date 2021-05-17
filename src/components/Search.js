@@ -1,10 +1,18 @@
-import styled from "styled-components";
+//import styled from "styled-components";
 
-function Search(){
+import { Form } from "react-bootstrap";
+import { FormGroup, FormControl, FormLabel} from "react-bootstrap"
+
+function Search(props){
     return(
-        <div>
-            search component
-        </div>
+      <div>
+          <Form>
+              <Form.Group controlId="Search">
+                <Form.Label>{props.label}</Form.Label>
+                <Form.Control type="text" placeholder="Enter ticker" />
+              </Form.Group>
+          </Form>
+      </div>
     )
 }
 
