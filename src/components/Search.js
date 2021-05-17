@@ -1,7 +1,6 @@
 //import styled from "styled-components";
 
 import { Form } from "react-bootstrap";
-import { FormGroup, FormControl, FormLabel} from "react-bootstrap"
 
 function Search(props){
     return(
