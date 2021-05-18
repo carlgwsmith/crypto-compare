@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
 .App {
   text-align: center;
 }
@@ -27,7 +29,18 @@
 .App-link {
   color: #61dafb;
 }
-
+.searchForm{
+  border: 6px solid #f4f4f4;
+  border-radius:20px;
+  padding:20px;
+  margin:20px
+}
+.searchForm > .form-group > .form-label{
+  font-family: 'Questrial', sans-serif;
+}
+.form-control{
+  font-family: 'Questrial', sans-serif;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
