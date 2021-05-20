@@ -34,31 +34,20 @@ fetch("https://coinranking1.p.rapidapi.com/coins", {
 
   return (
     <div className="Home">
-      <div className="row">
-        <div className="col-2"><Movers/></div>
-        <div className="col-2"><Movers/></div>
-        <div className="col-2"><Movers/></div>
-        <div className="col-2"><Movers/></div>
-        <div className="col-2"><Movers/></div>
-        <div className="col-2"><Movers/></div>
+      <div className="row topCryptos">
+      {isLoading && <p>Wait I'm Loading comments for you</p>}
+            {coins.length !== 6}
+            {coins.slice(0,6).map((coin, index) => (
+              <div key={index} className="col-sm-2">
+                <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change}/>
+              </div>
+            ))}
       </div>
         <Banner />
         <div className="row">
           <div className="col-sm-5"><Search label="Let's analyze a crypto"/></div>
           <div className="col-sm-5">
-          {isLoading && <p>Wait I'm Loading comments for you</p>}
-            {coins.length !== 6}
-            {coins.slice(0,6).map((c, index) => (
-              <div key={index}>
-                    <div>
-                      <h2 style={{ textDecoration: "Underline" }}>
-                        {c.name}
-                      </h2>
-                      <p>{c.volume}</p>
-                    </div>
-                    <hr />
-              </div>
-            ))}
+            
           </div>
         </div>
     </div>
