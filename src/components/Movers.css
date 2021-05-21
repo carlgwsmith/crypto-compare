@@ -1,0 +1,62 @@
+.box{
+    border: 1px solid #e8e8f3;
+    border-radius: 8px;
+    /* box-shadow: 0px 2px 2px #cccccc; */
+    background-color: rgb(240 246 255);
+    /* width: 15vw;
+    height: 10vw; */
+    margin: 5px;
+  }
+.box.row{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.box > .col-8{
+  padding:0px 5px 0 5px;
+}
+.box > .col-4{
+  padding:0px 5px 0 5px;
+}
+  .box > .col-md-8, .col-sm-12, .col-xs-12 {
+    padding:0px
+  }
+  .box > .col-md-4, .col-sm-12, .col-xs-12 {
+    padding:0px
+  }
+  p.symbol{
+    text-align: left;
+    padding: 10px 0px 0px 12px;
+    margin-bottom: 2px;
+    font-weight: 600;
+    font-size:18px;
+    font-family: 'Questrial', sans-serif;
+  }
+   p.price{
+    text-align: left;
+    padding: 0px 0px 0px 12px;
+    margin-bottom: 2px;
+    font-size:18px;
+    font-weight: 600;
+    font-family: 'Questrial', sans-serif;
+    color:rgb(24, 124, 255);
+  }
+  p.name{
+    text-align: left;
+    padding: 4px 0px 0px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 0;
+    font-weight: 300;
+    font-family: 'Questrial', sans-serif;
+    color: rgb(152, 152, 152);
+  }
+   p.changeNeg{
+    color: #fa5b5b;
+    font-family: 'Questrial', sans-serif;
+    font-weight: 700;
+  }
+   p.changePos{
+    color: #14ce71;
+    font-family: 'Questrial', sans-serif;
+    font-weight: 700;
+  }
