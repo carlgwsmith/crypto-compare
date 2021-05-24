@@ -67,14 +67,14 @@ fetch("https://coinranking1.p.rapidapi.com/coins", {
     ]
   };
   return (
-    <div style={{paddingLeft:"20px"}}>
+    <div style={{padding:"0px 10px"}}>
       <p className="moversTitle"> Today's Top Movers</p>
       <Slider {...settings}>
       {isLoading && <p>Loading Coins</p>}
             {coins.length !== 6}
             {coins.slice(0,12).map((coin, index) => (
               <div key={index}>
-                <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change}/>
+                <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} sparkline={coin.sparkline}/>
               </div>
             ))}
       </Slider>

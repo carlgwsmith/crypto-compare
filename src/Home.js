@@ -1,8 +1,9 @@
-import {useState, useEffect} from 'react'
+//import {useState, useEffect} from 'react'
 
 import Search from './components/Search'
 import Banner from './components/Banner'
-import Movers from './components/Movers'
+//import Movers from './components/Movers'
+import TinyChart from './components/TinyChart'
 import TopSlider from './components/TopSlider'
 
 import './App.css';
@@ -18,7 +19,7 @@ function Home() {
         <div className="row">
           <div className="col-sm-5"><Search label="Let's analyze a crypto"/></div>
           <div className="col-sm-5">
-            
+            <TinyChart/>
           </div>
         </div>
     </div>
