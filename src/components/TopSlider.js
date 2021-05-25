@@ -2,7 +2,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import React, {useEffect, useState} from "react";
-import Movers from "./Movers"
+import Movers from "./Movers";
+//import { CoinContext } from '../Context/CoinContext';
 
 export default function TopSlider () {
   const [coins, setCoins] = useState([]);
@@ -74,7 +75,7 @@ fetch("https://coinranking1.p.rapidapi.com/coins", {
             {coins.length !== 6}
             {coins.slice(0,12).map((coin, index) => (
               <div key={index}>
-                <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} sparkline={coin.sparkline}/>
+                <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history}/>
               </div>
             ))}
       </Slider>
