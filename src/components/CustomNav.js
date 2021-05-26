@@ -1,10 +1,11 @@
 import { Nav, Navbar } from "react-bootstrap";
+import '../components/CSS/Nav.css'
 
 function CustomNav(){
   return(
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="/">
-        Crypto Compare
+        Crypto <strong>Compare</strong>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

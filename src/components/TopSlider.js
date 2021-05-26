@@ -42,10 +42,28 @@ fetch("https://coinranking1.p.rapidapi.com/coins", {
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1256,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 5,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: false
         }
@@ -54,8 +72,9 @@ fetch("https://coinranking1.p.rapidapi.com/coins", {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
         }
       },
       {
@@ -73,7 +92,7 @@ fetch("https://coinranking1.p.rapidapi.com/coins", {
       <Slider {...settings}>
       {isLoading && <p>Loading Coins</p>}
             {coins.length !== 6}
-            {coins.slice(0,12).map((coin, index) => (
+            {coins.slice(0,20).map((coin, index) => (
               <div key={index}>
                 <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history}/>
               </div>
