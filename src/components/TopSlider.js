@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import React, {useEffect, useState} from "react";
 import Movers from "./Movers";
+import {GiFirewall} from "react-icons/gi"
 //import { CoinContext } from '../Context/CoinContext';
 
 export default function TopSlider () {
@@ -88,7 +89,7 @@ fetch("https://coinranking1.p.rapidapi.com/coins", {
   };
   return (
     <div style={{padding:"0px 10px"}}>
-      <p className="moversTitle"> Today's Top Movers</p>
+      <p className="moversTitle">🔥 Today's Top Movers 🔥</p>
       <Slider {...settings}>
       {isLoading && <p>Loading Coins</p>}
             {coins.length !== 6}
