@@ -3,7 +3,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import React, {useEffect, useState} from "react";
 import Movers from "./Movers";
-import {GiFirewall} from "react-icons/gi"
 //import { CoinContext } from '../Context/CoinContext';
 
 export default function TopSlider () {
@@ -14,7 +13,7 @@ export default function TopSlider () {
 fetch("https://coinranking1.p.rapidapi.com/coins", {
 	"method": "GET",
 	"headers": {
-		"x-rapidapi-key": "576a270f4emshce03cc0d892e394p15648fjsnddb66ef301e9",
+		"x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
 		"x-rapidapi-host": "coinranking1.p.rapidapi.com"
 	}
 })

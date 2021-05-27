@@ -3,8 +3,9 @@
 import Search from './components/Search'
 import Banner from './components/Banner'
 //import Movers from './components/Movers'
-import TinyChart from './components/TinyChart'
+//import TinyChart from './components/TinyChart'
 import TopSlider from './components/TopSlider'
+import Signup from './components/Signup'
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,7 +20,7 @@ function Home() {
           <div className="col-sm-6"><Banner /></div>
           <div className="col-sm-6"><Search label="Let's analyze a crypto"/></div>
           <div className="col-sm-12">
-            <TinyChart/>
+            <Signup/>
           </div>
         </div>
     </div>

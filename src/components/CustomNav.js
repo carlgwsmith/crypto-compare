@@ -20,7 +20,7 @@ function CustomNav(){
           </Nav.Link>
           <Dropdown alignRight>
             <Dropdown.Toggle id="dropdown-basic" as="p">
-               <img src={`${process.env.PUBLIC_URL}/Assets/carl.jpg`} className="profilepic"></img>
+               <img src={`${process.env.PUBLIC_URL}/Assets/carl.jpg`} className="profilepic" alt="user"></img>
             </Dropdown.Toggle>
             <Dropdown.Menu >
               <Dropdown.Item href="#">Profile <CgProfile className="ddicon"/></Dropdown.Item>
