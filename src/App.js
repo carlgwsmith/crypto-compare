@@ -1,5 +1,5 @@
-import Home from "./Home"
-import Signup from './components/Signup'
+import Dashboard from "./Dashboard"
+import Home from './Home'
 import Results from "./Results"
 import CustomNav from './components/CustomNav'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
@@ -14,8 +14,8 @@ function App() {
       <div className="App">
         <CustomNav/>
         <Switch>
-        <Route path="/" exact component={Signup}/>
-        <Route path="/Home" component={Home}/>
+        <Route path="/" exact component={Home}/>
+        <Route path="/Dashboard" component={Dashboard}/>
         <Route path="/Results" component={Results}/>
         </Switch>
       </div>
