@@ -43,15 +43,19 @@ function CustomNav(){
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/Results">
-            Results
-          </Nav.Link>
           { !currentUser && 
             <Button variant="primary" onClick={handleShow} className="loginBtn">
               <FiLogIn/> Login
           </Button>
           }
           { currentUser &&
+          <>
+          <Nav.Link href="/Dashboard">
+            Dashboard
+          </Nav.Link>
+          <Nav.Link href="/Results">
+          Results
+        </Nav.Link>
           <Dropdown alignRight>
             <Dropdown.Toggle id="dropdown-basic" as="p">
               {/* {error && <Alert variant="danger">{error}</Alert>} */}
@@ -65,6 +69,7 @@ function CustomNav(){
               <Dropdown.Item onClick={handleLogout}>Log Out <FiLogOut className="ddicon"/></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
+          </>
           }
         </Nav>
       </Navbar.Collapse>
