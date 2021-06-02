@@ -25,7 +25,15 @@ function logout() {
 }
 
 function resetPassword(email){
-    return auth.SendPasswordResetEmail(email)
+    return auth.sendPasswordResetEmail(email)
+}
+
+function updateEmail(email){
+    return currentUser.updateEmail(email)
+}
+
+function updatePassword(password){
+    return currentUser.updatePassword(password)
 }
 
 
@@ -42,7 +50,9 @@ const value = {
     login,
     signup,
     logout,
-    resetPassword
+    resetPassword,
+    updateEmail,
+    updatePassword
 }
 
     return(

@@ -1,6 +1,8 @@
 import Dashboard from "./Dashboard"
 import Home from './Home'
 import Results from "./Results"
+import Settings from './Settings'
+import UpdateProfile from './components/UpdateProfile'
 import ForgotPassword from './components/ForgotPassword'
 import CustomNav from './components/CustomNav'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
@@ -19,6 +21,8 @@ function App() {
         <Route path="/" exact component={Home}/>
         <Route path="/forgot-password" component={ForgotPassword}/>
         <PrivateRoute path="/Dashboard" component={Dashboard}/>
+        <PrivateRoute path="/Settings" component={Settings}/>
+        <PrivateRoute path="/update-profile" component={UpdateProfile}/>
         <PrivateRoute path="/Results" component={Results}/>
         </Switch>
       </div>

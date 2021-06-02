@@ -1,5 +1,4 @@
 import Signup from './components/Signup'
-import Login from './components/Login'
 import TopSlider from './components/TopSlider'
 
 import './App.css';
@@ -12,11 +11,8 @@ function Home() {
       <div className="row topCryptos">
       </div>
         <div className="row">
-          <div className="col-sm-12">
+          <div className="col-sm-6">
               <Signup/>
-          </div>
-          <div className="col-sm-12">
-              <Login/>
           </div>
         </div>
     </div>

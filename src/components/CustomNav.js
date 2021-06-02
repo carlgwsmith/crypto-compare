@@ -1,14 +1,20 @@
 import React, {useState} from "react"
-import { Nav, Navbar, Alert } from "react-bootstrap";
+import { Nav, Navbar, Modal, Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
-import {FiLogOut} from 'react-icons/fi'
+import {FiLogOut, FiLogIn} from 'react-icons/fi'
 import {CgProfile} from 'react-icons/cg'
 import {FaCog} from 'react-icons/fa'
 import '../components/CSS/Nav.css'
 import { useAuth } from "../Context/AuthContext"
 import {useHistory} from "react-router-dom"
+import Login from '../components/Login'
 
 function CustomNav(){
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()
@@ -28,6 +34,7 @@ function CustomNav(){
 
 
   return(
+    <>
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="/">
         Crypto <strong>Compare</strong>
@@ -39,6 +46,11 @@ function CustomNav(){
           <Nav.Link href="/Results">
             Results
           </Nav.Link>
+          { !currentUser && 
+            <Button variant="primary" onClick={handleShow} className="loginBtn">
+              <FiLogIn/> Login
+          </Button>
+          }
           { currentUser &&
           <Dropdown alignRight>
             <Dropdown.Toggle id="dropdown-basic" as="p">
@@ -57,6 +69,12 @@ function CustomNav(){
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+    <Modal show={show} onHide={handleClose} size="md">
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body><Login/></Modal.Body>
+      </Modal>
+    </>
   )
 }
 
