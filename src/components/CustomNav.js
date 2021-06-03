@@ -64,7 +64,7 @@ function CustomNav(){
             </Dropdown.Toggle>
             <Dropdown.Menu >
               <Dropdown.Item href="#">Profile <CgProfile className="ddicon"/></Dropdown.Item>
-              <Dropdown.Item href="#">Settings <FaCog className="ddicon"/></Dropdown.Item>
+              <Dropdown.Item href="/Settings">Settings <FaCog className="ddicon"/></Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleLogout}>Log Out <FiLogOut className="ddicon"/></Dropdown.Item>
             </Dropdown.Menu>
