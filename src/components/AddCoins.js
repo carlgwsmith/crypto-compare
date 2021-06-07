@@ -1,25 +1,44 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Form, Button, Card, Alert} from 'react-bootstrap'
 import {database} from "../firebase"
 import { useAuth } from "../Context/AuthContext"
 
 const AddCoins = () => {
+    const [items, setItems] = useState([])
     const [coin, setCoin] = useState('')
     const { currentUser} = useAuth()
+    const [error, setError] = useState('')
+
+    const addCoinToList = () => {
+        if (!items.find((item) => item.name === coin)){
+            setItems([...items, {id: items.length, name: coin}])
+            console.log('coin set')
+        } else{
+            setError('Coin already added')
+        }
+        database.users.doc(currentUser.uid).set({
+            coins: items
+        })
+    }
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(coin);
-        database.users.doc(currentUser.uid).set({
-            coin: coin
-        })
+        addCoinToList()
+        console.log(items);
+        console.log('done')
     }
+
+    useEffect(() => {
+        database.users.doc(currentUser.uid).set({
+            coins: items
+        });
+    }, [items]);
 
     return (
 <div>
         <Card>
             <Card.Body>
-            {/* {error && <Alert variant="danger">{error}</Alert>} */}
+            {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id="coins">
                         <Form.Label>Coins</Form.Label>
@@ -28,6 +47,11 @@ const AddCoins = () => {
                     <Button type="submit" className="w-100">Add Coins</Button>
                 </Form>
             </Card.Body>
+            <ul>
+                {items.map((item) => (
+                    <li key={item.id}>{item.name}</li>
+                ))}
+            </ul>
         </Card>
         </div>
     );
