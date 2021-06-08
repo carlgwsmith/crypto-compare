@@ -6,19 +6,19 @@ import { useAuth } from "../Context/AuthContext"
 const AddCoins = () => {
     const [items, setItems] = useState([])
     const [coin, setCoin] = useState('')
-    const { currentUser} = useAuth()
+    const { currentUser } = useAuth()
     const [error, setError] = useState('')
 
     const addCoinToList = () => {
         if (!items.find((item) => item.name === coin)){
             setItems([...items, {id: items.length, name: coin}])
             console.log('coin set')
+            database.users.doc(currentUser.uid).set({
+                coins: items
+            });
         } else{
             setError('Coin already added')
         }
-        database.users.doc(currentUser.uid).set({
-            coins: items
-        })
     }
 
     function handleSubmit(e){
@@ -28,11 +28,11 @@ const AddCoins = () => {
         console.log('done')
     }
 
-    useEffect(() => {
-        database.users.doc(currentUser.uid).set({
-            coins: items
-        });
-    }, [items]);
+    // useEffect(() => {
+    //     database.users.doc(currentUser.uid).set({
+    //         coins: items
+    //     });
+    // }, []);
 
     return (
 <div>
@@ -47,11 +47,6 @@ const AddCoins = () => {
                     <Button type="submit" className="w-100">Add Coins</Button>
                 </Form>
             </Card.Body>
-            <ul>
-                {items.map((item) => (
-                    <li key={item.id}>{item.name}</li>
-                ))}
-            </ul>
         </Card>
         </div>
     );

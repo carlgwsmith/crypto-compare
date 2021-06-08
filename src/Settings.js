@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react';
 import ForgotPassword from './components/ForgotPassword'
 import firebase from './firebase'
 import AddCoins from './components/AddCoins'
+import Wallet from './components/Wallet'
 
 const Settings = () => {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
 
     const ref = firebase.firestore().collection("users")
-    console.log(ref)
 
     function getUsers() {
         setLoading(true);
@@ -33,15 +33,10 @@ const Settings = () => {
     return (
         <div>
             <h1>Settings</h1>
-            {users.map((users) => (
-                <div key={users.id}>
-                    <h2>{users.fullname}</h2>
-                    <h3>{users.email}</h3>
-                </div>
-            ))}
             <ForgotPassword/>
             <h2>Add Coins</h2>
             <AddCoins/>
+            <Wallet/>
         </div>
     );
 }
