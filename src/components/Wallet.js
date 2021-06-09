@@ -6,7 +6,7 @@ import { useAuth } from "../Context/AuthContext"
 const Wallet = () => {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(false)
-    const { currentUser} = useAuth()
+    const { currentUser } = useAuth()
     const [error, setError] = useState('')
 
     function getCoins(){
@@ -15,9 +15,9 @@ const Wallet = () => {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push(doc.data());
-                console.log(doc.data())
             });
         setItems(items)
+        console.log(items)
         setLoading(false)
         })
         console.log('success')
@@ -27,8 +27,11 @@ const Wallet = () => {
         getCoins()
     }, []);
 
+    if(loading){
+        return <h1>loading...</h1>;      
+    }
+
     return (
-<div>
         <Card>
             {error && <Alert variant="danger">{error}</Alert>}
             <h1>Wallet</h1>
@@ -38,7 +41,6 @@ const Wallet = () => {
                 ))}
             </ul>
         </Card>
-        </div>
     );
 }
 

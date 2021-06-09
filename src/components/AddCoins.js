@@ -8,31 +8,44 @@ const AddCoins = () => {
     const [coin, setCoin] = useState('')
     const { currentUser } = useAuth()
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const addCoinToList = () => {
+       // e.preventDefault()
         if (!items.find((item) => item.name === coin)){
-            setItems([...items, {id: items.length, name: coin}])
-            console.log('coin set')
-            database.users.doc(currentUser.uid).set({
-                coins: items
-            });
+           setItems([...items, {id: items.length, name: coin}]);
+        setError('Coin Added')
         } else{
             setError('Coin already added')
         }
     }
 
+    // function getCoins(){
+    //     setLoading(true)
+    //     database.users.onSnapshot((querySnapshot) => {
+    //         const items = [];
+    //         querySnapshot.forEach((doc) => {
+    //             items.push(doc.data());
+    //         });
+    //     setItems(items)
+    //     console.log(items)
+    //     setLoading(false)
+    //     })
+    //     console.log('success')
+    // }
+
     function handleSubmit(e){
         e.preventDefault()
         addCoinToList()
-        console.log(items);
+        console.log(items)
         console.log('done')
     }
 
-    // useEffect(() => {
-    //     database.users.doc(currentUser.uid).set({
-    //         coins: items
-    //     });
-    // }, []);
+    useEffect(() => {
+        database.users.doc(currentUser.uid).set({
+                coins: items
+        });
+    }, [items]);
 
     return (
 <div>
@@ -42,7 +55,7 @@ const AddCoins = () => {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id="coins">
                         <Form.Label>Coins</Form.Label>
-                        <Form.Control type="text" value={coin} onChange={e => setCoin(e.target.value)} required />
+                        <Form.Control type="text" onChange={e => setCoin(e.target.value)} required />
                     </Form.Group>
                     <Button type="submit" className="w-100">Add Coins</Button>
                 </Form>
