@@ -10,8 +10,8 @@ const AddCoins = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const addCoinToList = () => {
-       // e.preventDefault()
+    const addCoinToList = (e) => {
+       e.preventDefault()
         if (!items.find((item) => item.name === coin)){
            setItems([...items, {id: items.length, name: coin}]);
         setError('Coin Added')
@@ -19,27 +19,31 @@ const AddCoins = () => {
             setError('Coin already added')
         }
     }
-
+    
     // function getCoins(){
     //     setLoading(true)
     //     database.users.onSnapshot((querySnapshot) => {
-    //         const items = [];
+    //         const itemsArr = [];
     //         querySnapshot.forEach((doc) => {
-    //             items.push(doc.data());
+    //             itemsArr.push(doc.data());
     //         });
-    //     setItems(items)
-    //     console.log(items)
+    //    // console.log(itemsArr)
     //     setLoading(false)
+    //     setItems([{id:1, name:'penis'}])
+    //     // for(let i= 0; i < itemsArr.length; i++){
+    //     //     if(itemsArr.[i].coins[i]){
+    //     //     console.log(i)
+    //     //     console.log(itemsArr.[i].coins[i].name)
+    //     //     }
+    //     // }
     //     })
     //     console.log('success')
     // }
 
-    function handleSubmit(e){
-        e.preventDefault()
-        addCoinToList()
+    useEffect(() => {
+        //getCoins()
         console.log(items)
-        console.log('done')
-    }
+    }, []);
 
     useEffect(() => {
         database.users.doc(currentUser.uid).set({
@@ -52,7 +56,7 @@ const AddCoins = () => {
         <Card>
             <Card.Body>
             {error && <Alert variant="danger">{error}</Alert>}
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={addCoinToList}>
                     <Form.Group id="coins">
                         <Form.Label>Coins</Form.Label>
                         <Form.Control type="text" onChange={e => setCoin(e.target.value)} required />
