@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import ForgotPassword from './components/ForgotPassword'
 import firebase from './firebase'
 import AddCoins from './components/AddCoins'
-import Wallet from './components/Wallet'
 
 const Settings = () => {
     const [users, setUsers] = useState([])
@@ -36,7 +35,6 @@ const Settings = () => {
             <ForgotPassword/>
             <h2>Add Coins</h2>
             <AddCoins/>
-            <Wallet/>
         </div>
     );
 }

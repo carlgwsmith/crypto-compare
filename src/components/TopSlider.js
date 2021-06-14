@@ -10,7 +10,7 @@ export default function TopSlider () {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-fetch("https://coinranking1.p.rapidapi.com/coins", {
+fetch("https://coinranking1.p.rapidapi.com/coins?orderBy=change", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
