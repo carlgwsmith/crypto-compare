@@ -10,23 +10,6 @@ const Wallet = (props) => {
     const { currentUser } = useAuth()
     const [error, setError] = useState('')
 
-    // function getCoins(){
-    //     setLoading(true)
-    //     database.users.onSnapshot((querySnapshot) => {
-    //         const items = [];
-    //         querySnapshot.forEach((doc) => {
-    //             items.push(doc.data());
-    //         });
-    //     setItems(items)
-    //     //console.log(items)
-    //     setLoading(false)
-    //     })
-    //     console.log('success')
-    // }
-
-    // useEffect(() => {
-    //     getCoins()
-    // }, []);
 
     if(loading){
         return <h1>loading...</h1>;      

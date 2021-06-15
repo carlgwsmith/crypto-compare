@@ -61,7 +61,8 @@ const AddCoins = () => {
            submitArray.push({
                id:i,
                name: multiSelections[i].name,
-               symbol: multiSelections[i].symbol
+               symbol: multiSelections[i].symbol,
+               price: multiSelections[i].price
            })
         }
         database.users.doc(currentUser.uid).set({
@@ -77,8 +78,12 @@ const AddCoins = () => {
         doc => {
             let data = (doc.data());
             console.log(data);
-            const dataArray = Object.entries(data);
-            console.log(dataArray.coins)
+            if(data === undefined){
+                console.log('first timer')
+            }else{
+                const dataArray = Object.entries(data);
+            setMultiSelections(dataArray.[0].[1])
+            }
         }
         )
         setLoading(false)
