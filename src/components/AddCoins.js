@@ -5,15 +5,13 @@ import {database} from "../firebase"
 import { useAuth } from "../Context/AuthContext"
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import Wallet from './Wallet'
-import { data } from 'jquery';
 
 const AddCoins = () => {
-    const [items, setItems] = useState([])
     const [multiSelections, setMultiSelections] = useState([]);
     const [coins, setCoins] = useState([]);
-    const [coin, setCoin] = useState('')
     const { currentUser } = useAuth()
     const [error, setError] = useState('')
+    const [success, setSuccess] = useState('')
     const [loading, setLoading] = useState(false)
 
     let coinArray = coins.sort(function(a, b){
@@ -39,7 +37,7 @@ const AddCoins = () => {
         }
     })
     .catch(err => {
-        console.error(err);
+        setError('No Coins Yet')
     });
     }, []);
 
@@ -49,13 +47,6 @@ const AddCoins = () => {
 
     const addCoinToList = (e) => {
        e.preventDefault()
-        // if (!multiSelections.find((item) => item.name === coin)){
-        //    setItems([...multiSelections, {id: multiSelections.length, name: coin}]);
-        // setError('Coin Added')
-        // } else{
-        //     setError('Coin already added')
-        // }
-        console.log(items)
         let submitArray = []
         for(let i=0; i < multiSelections.length; i++){
            submitArray.push({
@@ -68,9 +59,12 @@ const AddCoins = () => {
         database.users.doc(currentUser.uid).set({
             coins: submitArray
     });
-        
+        setSuccess('Coin(s) Added')
     }
 
+    if(loading){
+        return <h1>loading...</h1>;      
+    }
     
     function getCoins(){
         setLoading(true)
@@ -87,8 +81,6 @@ const AddCoins = () => {
         }
         )
         setLoading(false)
-        // setMultiSelections([{id:multiSelections.length, name:'btc', }])
-        // })
         console.log('success')
     }
 
@@ -97,11 +89,8 @@ const AddCoins = () => {
         <Card>
             <Card.Body>
             {error && <Alert variant="danger">{error}</Alert>}
+                {success && <Alert variant="success">{success}</Alert>}
                 <Form onSubmit={addCoinToList}>
-                    {/* <Form.Group id="coins">
-                        <Form.Label>Coins</Form.Label>
-                        <Form.Control type="text" onChange={e => setCoin(e.target.value)} required />
-                    </Form.Group> */}
                     <Form.Group style={{ marginTop: '20px' }}>
                         <Form.Label>Select Multiple Coins</Form.Label>
                         <Typeahead
@@ -117,7 +106,7 @@ const AddCoins = () => {
                     {multiSelections.length !== 6}
                     {multiSelections.slice(0,20).map((coin, index) => (
                     <div key={index}>
-                        <Wallet symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history}/>
+                        <Wallet symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history} id={coin.id}/>
                     </div>
                     ))}
                     <Button type="submit" className="w-100">Add Coins</Button>

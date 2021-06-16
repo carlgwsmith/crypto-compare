@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {Card, Alert} from 'react-bootstrap'
+import {Card, Alert, Button} from 'react-bootstrap'
 import {database} from "../firebase"
 import { MdDeleteForever } from "react-icons/md";
 import { useAuth } from "../Context/AuthContext"
 
 const Wallet = (props) => {
-    const [items, setItems] = useState([])
-    const [loading, setLoading] = useState(false)
     const { currentUser } = useAuth()
+    const [loading, setLoading] = useState('')
     const [error, setError] = useState('')
 
 
@@ -23,6 +22,15 @@ function truncateString(string, limit) {
     }
   }
 
+  function deleteCoin(){    
+    let coinRef = database.users.doc(currentUser.uid);
+    console.log('remove ' + props.name)
+    coinRef.update({'coins': database.FieldValue.arrayRemove(coinRef.coins[props.id])
+  });
+    // setLoading(false)
+
+}
+
  return (
      <div className="box row">
          <div className="col-6">
@@ -31,7 +39,7 @@ function truncateString(string, limit) {
          <p className="price">${parseFloat(props.price).toFixed(2)}</p>
         </div>
         <div className="col-6">
-          <MdDeleteForever style={{fontSize:"2em", marginTop:"22px", float:'right'}}/>
+          <Button onClick={deleteCoin} style={{borderRadius:'40px', padding:'10px', marginTop:'20px', float:'right'}} variant="danger"><MdDeleteForever style={{fontSize:"1.5em"}}/></Button>
         </div>
      </div>
  )
