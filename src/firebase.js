@@ -11,6 +11,7 @@ const app = firebase.initializeApp({
     appId: process.env.REACT_APP_FIREBASE_APP_ID
 })
 
+
 const firestore = app.firestore()
 export const database = {
     users: firestore.collection('users')

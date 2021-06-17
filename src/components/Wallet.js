@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import {Card, Alert, Button} from 'react-bootstrap'
 import {database} from "../firebase"
+import firebase from 'firebase/app'
 import { MdDeleteForever } from "react-icons/md";
 import { useAuth } from "../Context/AuthContext"
+
+import '../components/CSS/Wallet.css';
 
 const Wallet = (props) => {
     const { currentUser } = useAuth()
     const [loading, setLoading] = useState('')
     const [error, setError] = useState('')
+    const [active, setActive] = useState(false)
 
 
     if(loading){
@@ -22,17 +26,21 @@ function truncateString(string, limit) {
     }
   }
 
-  function deleteCoin(){    
-    let coinRef = database.users.doc(currentUser.uid);
-    console.log('remove ' + props.name)
-    coinRef.update({'coins': database.FieldValue.arrayRemove(coinRef.coins[props.id])
-  });
-    // setLoading(false)
-
+  function deleteCoin(){
+    const coin = {
+      id: props.id,
+      name: props.name,
+      price: props.price,
+      symbol: props.symbol
+    }
+    console.log(coin)
+    database.users.doc(currentUser.uid).update({coins: firebase.firestore.FieldValue.arrayRemove(coin)});
+    setActive(true)
+    window.location.reload(false);
 }
 
  return (
-     <div className="box row">
+     <div className={active ? 'slide-out-top box row' : 'box row'}>
          <div className="col-6">
          <p className="symbol">{props.symbol}</p>
          <p className="name">{props.name}</p>
