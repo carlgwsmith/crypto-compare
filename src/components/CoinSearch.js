@@ -13,21 +13,20 @@ const CoinSearch = (props) => {
 const [coins, setCoins] = useState([])
 const [loading, setLoading] = useState(false)
 const [error, setError] = useState('')
+const [options, setOptions] =useState([])
 
-const options = [
-  {
-    label: 'Item 1',
-    path: 'http://localhost.com/item1',
-  },
-  {
-    label: 'Item 2',
-    path: 'http://localhost.com/item2',
-  },
-  {
-    label: 'Item 3',
-    path: 'http://localhost.com/item3',
-  },
-];
+useEffect(() => {
+  let optionsArray = []
+    for(let i=0; i < coins.length; i++){
+        optionsArray.push({
+            id:i,
+            label: coins[i].name,
+            path: '/coin/' + coins[i].symbol
+        })
+    }
+  setOptions(optionsArray)
+}, [coins]);
+
 
 useEffect(() => {
   fetch("https://coinranking1.p.rapidapi.com/coins?limit=100", {
