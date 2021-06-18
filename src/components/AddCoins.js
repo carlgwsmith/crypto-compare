@@ -85,14 +85,16 @@ const AddCoins = () => {
     }
 
     return (
-<div>
+<div className="row">
+    <div className="col-6">
+    <div className="col-12"><h2 className="pt-4">Add Coins</h2></div>
         <Card>
             <Card.Body>
             {error && <Alert variant="danger">{error}</Alert>}
                 {success && <Alert variant="success">{success}</Alert>}
                 <Form onSubmit={addCoinToList}>
                     <Form.Group style={{ marginTop: '20px' }}>
-                        <Form.Label>Select Multiple Coins</Form.Label>
+                        <Form.Label>Type in a coin and click the <strong>"Add Coins"</strong> button below to save to your wallet.</Form.Label>
                         <Typeahead
                         id="basic-typeahead-multiple"
                         labelKey="name"
@@ -103,17 +105,21 @@ const AddCoins = () => {
                         selected={multiSelections}
                         />
                     </Form.Group>
-                    {multiSelections.length !== 6}
-                    {multiSelections.slice(0,20).map((coin, index) => (
-                    <div key={index}>
-                        <Wallet symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history} id={coin.id}/>
-                    </div>
-                    ))}
                     <Button type="submit" className="w-100">Add Coins</Button>
                 </Form>
             </Card.Body>
         </Card>
+    </div>
+    <div className="col-6">
+    <h2 className="pt-4">Coin Wallet</h2>
+        {multiSelections.length !== 6}
+        {multiSelections.slice(0,20).map((coin, index) => (
+        <div key={index}>
+            <Wallet symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history} id={coin.id}/>
         </div>
+        ))}
+    </div>
+</div>
     );
 }
 

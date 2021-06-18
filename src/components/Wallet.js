@@ -36,9 +36,7 @@ function truncateString(string, limit) {
     console.log(coin)
     database.users.doc(currentUser.uid).update({coins: firebase.firestore.FieldValue.arrayRemove(coin)});
     setActive(true)
-    window.location.reload(false);
 }
-
  return (
      <div className={active ? 'slide-out-top box row' : 'box row'}>
          <div className="col-6">
