@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import InputGroup from 'react-bootstrap/InputGroup'
+import { BiSearchAlt } from "react-icons/bi";
+
 import {
   Highlighter,
+  ClearButton,
   Menu,
   MenuItem,
   Typeahead,
@@ -21,10 +25,16 @@ useEffect(() => {
         optionsArray.push({
             id:i,
             label: coins[i].name,
-            path: '/coin/' + coins[i].symbol
+            path: '/coin/' + coins[i].id
         })
     }
-  setOptions(optionsArray)
+
+    let sortedArray = optionsArray.sort(function(a, b){
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+  })
+  setOptions(sortedArray)
 }, [coins]);
 
 
@@ -51,10 +61,13 @@ useEffect(() => {
   }, []);
 
 return(
+  <>
+  <h2>Search for a coin</h2>
+  <inputGroup>
   <Typeahead
     id="open-window"
     options={options}
-    placeholder="Select an item..."
+    placeholder="Search for a coin..."
     renderMenu={(results, menuProps, props) => (
       <Menu {...menuProps}>
         {results.map((result, idx) => (
@@ -67,8 +80,16 @@ return(
           </MenuItem>
         ))}
       </Menu>
+    )}>
+      {({ onClear, selected }) => (
+      <div className="rbt-aux">
+        {!!selected.length && <ClearButton onClick={onClear} />}
+        {!selected.length && <BiSearchAlt/>}
+      </div>
     )}
-  />
+    </Typeahead>
+  </inputGroup>
+  </>
 )
 }
 

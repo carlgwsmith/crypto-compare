@@ -1,6 +1,6 @@
 //import {useState, useEffect} from 'react'
 
-import Search from './components/Search'
+import CoinSearch from './components/CoinSearch'
 import Banner from './components/Banner'
 //import Movers from './components/Movers'
 //import TinyChart from './components/TinyChart'
@@ -15,9 +15,9 @@ function Dashboard() {
         <TopSlider/>
       <div className="row topCryptos">
       </div>
-        <div className="row">
+        <div className="row p-4">
           <div className="col-sm-6"><Banner /></div>
-          <div className="col-sm-6"><Search label="Let's analyze a crypto"/></div>
+          <div className="col-sm-6"><CoinSearch/></div>
           <div className="col-sm-12">
           </div>
         </div>

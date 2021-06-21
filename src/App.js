@@ -15,24 +15,6 @@ import PrivateRoute from './components/PrivateRoute'
 
 function App() {
 
-  const CoinOverview = ({ match, location }) => {
-
-    const { params: { coinId } } = match;
-
-    return (
-      <>
-        <p>
-          <strong>COIN ID: </strong>
-          {coinId}
-        </p>
-        <p>
-          <strong>Location Props: </strong>
-          {coin.name}
-        </p>
-      </>
-    );
-  };
-
 
   return (
     <Router>
@@ -47,7 +29,9 @@ function App() {
         <PrivateRoute path="/update-profile" component={UpdateProfile}/>
         <PrivateRoute path="/Profile" component={Profile}/>
         <PrivateRoute path="/Results" component={Results}/>
-        <Route path="/coin/:coinId" component={CoinOverview}/>
+        <Route path="/coin/:coinId" render={(props) => (
+          <CoinOverview {...props} />
+        )}/>
         </Switch>
       </div>
       </AuthProvider>
