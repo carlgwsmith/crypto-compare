@@ -48,6 +48,9 @@ span#inputGroupAppend {
 input.passwordField.form-control {
   border-right: none !important;
 }
+.card{
+  border-radius: 0.7rem !important;
+}
 .form-label{
   font-family: 'Questrial', sans-serif;
 }
