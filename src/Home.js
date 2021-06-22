@@ -9,14 +9,15 @@ function Home() {
   return (
     <div className="Dashboard">
         <TopSlider/>
-      <div className="row topCryptos">
-      </div>
-        <div className="row">
+        <div className="row pt-2 px-4 pb-5">
+          <div className="col-sm-12 p-3 pb-4">
+          <CoinSearch/>
+          </div>
           <div className="col-sm-6">
               <Signup/>
           </div>
           <div className="col-sm-6">
-            <CoinSearch/>
+  
           </div>
         </div>
     </div>

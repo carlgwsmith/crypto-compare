@@ -1,16 +1,29 @@
 import React, {useRef, useState} from 'react'
-import {Form, Button, Card, Alert} from 'react-bootstrap'
+import {InputGroup, Form, Button, Card, Alert} from 'react-bootstrap'
 import { useAuth} from '../Context/AuthContext'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { BsEyeSlash } from "react-icons/bs";
+import {FaRegEye} from "react-icons/fa"
 
 export default function Signup(){
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [open, setOpen] = useState(<BsEyeSlash size="1.2em"/>);
     const {signup} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
+
+    const togglePasswordVisiblity = () => {
+        setPasswordShown(passwordShown ? false : true);
+        if (passwordShown === true) {
+          setOpen(<BsEyeSlash size="1.2em"/>);
+        } else {
+          setOpen(<FaRegEye size="1.2em"/>);
+        }
+      };
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -21,7 +34,7 @@ export default function Signup(){
             setError('')
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
-            history.push('/')
+            history.push('/Dashboard')
         } catch (error) {
             setError('Failed to create account')
         }
@@ -36,24 +49,35 @@ export default function Signup(){
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id="email">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" ref={emailRef} required />
+                        <Form.Label>Email Address</Form.Label>
+                        <Form.Control type="email" ref={emailRef} placeholder="Enter Your Email Address" required />
                     </Form.Group>
                     <Form.Group id="password">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" ref={passwordRef} required />
+                    <Form.Label>Password</Form.Label>
+                        <InputGroup>
+                        <Form.Control type={passwordShown ? "text" : "password"} ref={passwordRef} className="passwordField" placeholder="Enter Your Password" required />
+                        <InputGroup.Append>
+                            <InputGroup.Text id="inputGroupAppend">
+                            <span><i onClick={togglePasswordVisiblity}>{open}</i>{" "}</span>
+                            </InputGroup.Text>
+                        </InputGroup.Append>
+                        </InputGroup>
                     </Form.Group>
                     <Form.Group id="password-confirm">
                         <Form.Label>Password Confirmation</Form.Label>
-                        <Form.Control type="password" ref={passwordConfirmRef} required />
+                        <InputGroup>
+                        <Form.Control type={passwordShown ? "text" : "password"} ref={passwordConfirmRef} className="passwordField" placeholder="Confirm Your Password" required />
+                        <InputGroup.Append>
+                            <InputGroup.Text id="inputGroupAppend">
+                            <span><i onClick={togglePasswordVisiblity}>{open}</i>{" "}</span>
+                            </InputGroup.Text>
+                        </InputGroup.Append>
+                        </InputGroup>
                     </Form.Group>
                     <Button disabled={loading} type="submit" className="w-100">Sign Up</Button>
                 </Form>
             </Card.Body>
         </Card>
-        <div className='w-100 text-center mt-2'>
-                Already have an account? Log In
-            </div>
         </div>
     )
 }

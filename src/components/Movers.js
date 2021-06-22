@@ -22,7 +22,7 @@ function truncateString(string, limit) {
          <p className="name">{truncateString(props.name, 10)}</p>
          <p className="price">${parseFloat(props.price).toFixed(2)}</p>
         </div>
-        <div className="col-5" style={{margin: "10px 0px", borderLeft: "1px solid #eaecfb"}}>
+        <div className="col-5" style={{margin: "10px 0px", borderLeft: "1px solid #eaecfb", textAlign: "center"}}>
         {props.change > 0 ?
             <div style={{marginTop:"4px"}}><Sparklines data={props.history}>
             <SparklinesLine color="#14ce71" style={{strokeWidth: 3, stroke:'#14ce71'}}/>

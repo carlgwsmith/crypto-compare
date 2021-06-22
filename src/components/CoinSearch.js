@@ -11,6 +11,7 @@ import {
 } from 'react-bootstrap-typeahead';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
+import '../components/CSS/CoinSearch.css'
 
 const CoinSearch = (props) => {
 
@@ -62,7 +63,7 @@ useEffect(() => {
 
 return(
   <>
-  <h2>Search for a coin</h2>
+  <h2 className="text-center">Search for a coin</h2>
   <inputGroup>
   <Typeahead
     id="open-window"
@@ -84,7 +85,7 @@ return(
       {({ onClear, selected }) => (
       <div className="rbt-aux">
         {!!selected.length && <ClearButton onClick={onClear} />}
-        {!selected.length && <BiSearchAlt/>}
+        {!selected.length && <BiSearchAlt size="2em"/>}
       </div>
     )}
     </Typeahead>

@@ -50,12 +50,6 @@ function CustomNav(){
           }
           { currentUser &&
           <>
-          <Nav.Link href="/Dashboard">
-            Dashboard
-          </Nav.Link>
-          <Nav.Link href="/Results">
-          Results
-        </Nav.Link>
           <Dropdown alignRight>
             <Dropdown.Toggle id="dropdown-basic" as="p">
               {/* {error && <Alert variant="danger">{error}</Alert>} */}

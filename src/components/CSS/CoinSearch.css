@@ -1,0 +1,8 @@
+input.rbt-input-main.form-control.rbt-input {
+    padding: 2rem !important;
+    border-radius: 10px !important;
+    font-size: 1.4rem !important;
+}
+.rbt-aux {
+    margin-right: .5em;
+}

@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -24,7 +20,37 @@
   font-size: calc(10px + 2vmin);
   color: #444;
 }
+h1, h2, h3, h4, h5{
+  font-family: 'Questrial', sans-serif;
+  color: #585858;
+}
+h1, h2, h3{
+  font-weight:700 !important;
+}
+h4, h5{
+  font-weight:500 !important;
+}
+span#inputGroupAppend {
+  background-color: transparent !important;
+}
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:#bababa !important;
+  opacity: 1; /* Firefox */
+}
 
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #bababa !important;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+  color: #bababa !important;
+}
+input.passwordField.form-control {
+  border-right: none !important;
+}
+.form-label{
+  font-family: 'Questrial', sans-serif;
+}
 .App-link {
   color: #61dafb;
 }

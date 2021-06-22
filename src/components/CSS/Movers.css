@@ -25,11 +25,12 @@
   }
   p.symbol{
     text-align: left;
-    padding: 10px 0px 0px 12px;
+    padding: 15px 0px 0px 12px;
     margin-bottom: 2px;
     font-weight: 600;
     font-size:18px;
     font-family: 'Questrial', sans-serif;
+    color: #585858;
   }
    p.price{
     text-align: left;
@@ -55,6 +56,7 @@
     font-family: 'Questrial', sans-serif;
     font-weight: 700;
     font-size: 12px;
+    text-align: center;
     margin-bottom: 5px;
   }
    p.changePos{
@@ -63,4 +65,5 @@
     font-weight: 700;
     font-size: 12px;
     margin-bottom: 5px;
+    text-align: center;
   }
