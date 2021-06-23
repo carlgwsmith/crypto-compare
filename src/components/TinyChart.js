@@ -4,16 +4,30 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 function TinyChart (props) {
   const [data, setData] = useState([]);
 
+  function timeConverter(UNIX_timestamp){
+    var trim = UNIX_timestamp.substring(0,10);
+    var a = new Date(trim * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+  }
+  
   useEffect(() => {
     setData(props.data)
     console.log(props.data)
-  }, []);
+  }, [props.data]);
 
     return (
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
-          width={50}
-          height={30}
+          width={500}
+          height={300}
           data={data}
           margin={{
             top: 5,
@@ -23,12 +37,12 @@ function TinyChart (props) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="timestamp"/>
+          <XAxis />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="price" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     )
