@@ -1,6 +1,6 @@
 import Dashboard from "./Dashboard"
 import Home from './Home'
-import Results from "./Results"
+import Portfolio from "./Portfolio"
 import Settings from './Settings'
 import Profile from './Profile'
 import UpdateProfile from './components/UpdateProfile'
@@ -29,7 +29,7 @@ function App() {
         <PrivateRoute path="/Settings" component={Settings}/>
         <PrivateRoute path="/update-profile" component={UpdateProfile}/>
         <PrivateRoute path="/Profile" component={Profile}/>
-        <PrivateRoute path="/Results" component={Results}/>
+        <PrivateRoute path="/Portfolio" component={Portfolio}/>
         <Route path="/coin/:coinId" render={(props) => (
           <CoinOverview {...props} />
         )}/>

@@ -12,3 +12,34 @@
     color:grey;
     background-color: #dddddd;
 }
+text.recharts-text.recharts-cartesian-axis-tick-value {
+    font-family: 'Questrial', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}
+span.recharts-legend-item-text {
+    font-weight: 600;
+    font-family: 'Questrial', sans-serif;
+    letter-spacing: 4px;
+}
+.coinIcon{
+    height:30px;
+}
+.coinDetails{
+    font-family: 'Questrial', sans-serif;
+    color: #585858;
+    font-size:2rem;
+    font-weight: 700;
+}
+.iconContainer{
+    max-width: 55px;
+    height: 55px !important;
+    margin-right: 10px;
+    border-right: 2px solid #dfdfdf;
+    padding-right: 10px;
+    display: inline-block;
+}
+.nameContainer{
+    margin-top:10px;
+    display: inline-block;
+}

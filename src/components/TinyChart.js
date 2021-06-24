@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import moment from 'moment'
+import CoinOverview from './CoinOverview';
 
 function TinyChart (props) {
   const [data, setData] = useState([]);
@@ -18,6 +20,10 @@ function TinyChart (props) {
     return time;
   }
   
+  const coinColor = props.color
+
+  console.log('color' + coinColor)
+  
   useEffect(() => {
     setData(props.data)
     console.log(props.data)
@@ -25,7 +31,7 @@ function TinyChart (props) {
 
     return (
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart
+        <AreaChart
           width={500}
           height={300}
           data={data}
@@ -37,13 +43,19 @@ function TinyChart (props) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="timestamp"/>
+          <defs>
+            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor={coinColor} stopOpacity={0.8}/>
+              <stop offset="95%" stopColor='#ffffff' stopOpacity={0.4}/>
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="timestamp" tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY')}/>
           <XAxis />
           <YAxis />
-          <Tooltip />
+          <Tooltip labelFormatter={t => new Date(t).toLocaleString()}/>
           <Legend />
-          <Line type="monotone" dataKey="price" stroke="#82ca9d" />
-        </LineChart>
+          <Area type="monotone" dataKey="price" stroke={coinColor} name="Price ($)" dot={false} strokeWidth={2} fillOpacity={1} fill="url(#colorUv)"/>
+        </AreaChart>
       </ResponsiveContainer>
     )
 }

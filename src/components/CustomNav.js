@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import { Nav, Navbar, Modal, Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import {FiLogOut, FiLogIn} from 'react-icons/fi'
+import {BsHouse, BsWallet} from 'react-icons/bs'
 import {CgProfile} from 'react-icons/cg'
 import {FaCog} from 'react-icons/fa'
 import '../components/CSS/Nav.css'
@@ -18,6 +19,9 @@ function CustomNav(){
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()
+
+  let userEmail= currentUser.email
+  let userName= userEmail.substr(0, userEmail.indexOf('@')); 
 
   async function handleLogout(){
     setError(' ')
@@ -42,19 +46,23 @@ function CustomNav(){
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link href="/">Home</Nav.Link>
           { !currentUser && 
+          <>
+          <Nav.Link href="/"><BsHouse/> Home</Nav.Link>
             <Button variant="primary" onClick={handleShow} className="loginBtn">
               <FiLogIn/> Login
           </Button>
+          </>
           }
           { currentUser &&
           <>
+          <Nav.Link href="/Dashboard"><BsHouse/> Home</Nav.Link>
+          <Nav.Link href="/Portfolio"><BsWallet/> Portfolio</Nav.Link>
           <Dropdown alignRight>
             <Dropdown.Toggle id="dropdown-basic" as="p">
               {/* {error && <Alert variant="danger">{error}</Alert>} */}
                {/* <img src={`${process.env.PUBLIC_URL}/Assets/carl.jpg`} className="profilepic" alt="user"></img> */}
-              {currentUser.email}
+               <CgProfile/> {userName}
             </Dropdown.Toggle>
             <Dropdown.Menu >
               <Dropdown.Item href="#">Profile <CgProfile className="ddicon"/></Dropdown.Item>
