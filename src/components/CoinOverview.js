@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import Chart from '../components/TinyChart'
 import '../components/CSS/Overview.css'
+import {Button} from 'react-bootstrap'
 import {FaGlobeAmericas} from 'react-icons/fa'
+import {RiAddCircleFill} from 'react-icons/ri'
+import { useAuth } from "../Context/AuthContext"
+import Login from '../components/Login'
 
 const CoinOverview = (props) => {
     const [coin, setCoin] = useState({})
@@ -9,6 +13,7 @@ const CoinOverview = (props) => {
     const [timeFrame, setTimeFrame] = useState('7d')
     const [coinHistory, setCoinHistory] = useState([])
     const [activeBtn, setActiveBtn] = useState('')
+    const { currentUser } = useAuth()
 
     const coinId = props.match.params.coinId
 
@@ -61,6 +66,10 @@ const CoinOverview = (props) => {
             setActiveBtn('active')
         }
 
+        function addToWallet(){
+            console.log('added')
+        }
+
     return (
         <div>
             <div className="row p-2 mx-4 mt-2 mb-3" style={{borderBottom: '2px solid #e3e3e3'}}>
@@ -71,12 +80,24 @@ const CoinOverview = (props) => {
                     </div>
                 </div>
                 <div className="col-sm-6 pr-4 align-middle text-right">
+                { !currentUser && 
+                <>
                 <a style={{fontSize: "15px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
+                </>
+                }
+                { currentUser &&
+                <>
+                <a style={{fontSize: "15px", marginRight: "10px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
+                <Button variant="success" onClick={addToWallet} className="addBtn">
+                    <RiAddCircleFill style={{marginTop: '-2px'}}/> Add to Wallet
+                </Button>
+                </>
+                }
                 </div>
             </div>
             <div className="row">
                 <div className="col-sm-12">
-                <div style={{height:'450px'}}>
+                <div style={{height:'430px'}}>
                 <Chart data={coinHistory} className="chartContainer" color={coin.color} />
                 </div>
                 <div style={{textAlign:'center'}}>

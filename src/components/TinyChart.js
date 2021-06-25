@@ -1,39 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import moment from 'moment'
-import CoinOverview from './CoinOverview';
+import numeral from 'numeral'
 
 function TinyChart (props) {
   const [data, setData] = useState([]);
+  const [coinColor, setCoinColor] = useState('');
 
-  function timeConverter(UNIX_timestamp){
-    var trim = UNIX_timestamp.substring(0,10);
-    var a = new Date(trim * 1000);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var sec = a.getSeconds();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-    return time;
-  }
-  
-  const coinColor = props.color
+  const currencyFormatter = (item) => numeral(item).format('$0,0')
 
   console.log('color' + coinColor)
   
   useEffect(() => {
     setData(props.data)
     console.log(props.data)
+    if (props.color){
+      setCoinColor(props.color)
+    }else(
+      setCoinColor('#14ce71')
+    )
   }, [props.data]);
 
     return (
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
-          width={500}
-          height={300}
           data={data}
           margin={{
             top: 5,
@@ -50,8 +40,7 @@ function TinyChart (props) {
             </linearGradient>
           </defs>
           <XAxis dataKey="timestamp" tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY')}/>
-          <XAxis />
-          <YAxis />
+          <YAxis tickFormatter= {currencyFormatter} domain={[0, 'auto']}/>
           <Tooltip labelFormatter={t => new Date(t).toLocaleString()}/>
           <Legend />
           <Area type="monotone" dataKey="price" stroke={coinColor} name="Price ($)" dot={false} strokeWidth={2} fillOpacity={1} fill="url(#colorUv)"/>

@@ -2,6 +2,22 @@
     width:1000px;
     height:400px;
 }
+.addBtn{
+    border-radius:20px;
+    margin-top:20px;
+    background-color:rgb(180, 245, 189);
+    border:2px solid #05e462;
+    color:#444 !important;
+    box-shadow:0px 2px 5px rgb(189, 189, 189);
+}
+.addBtn:hover{
+    border-radius:20px;
+    margin-top:20px;
+    background-color:rgb(150, 235, 162);
+    border:2px solid #00a545;
+    color:#444 !important;
+    box-shadow:0px 2px 5px rgb(189, 189, 189);
+}
 .timeBtn{
     margin: 10px;
     border-radius: 10px;
