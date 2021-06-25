@@ -5,7 +5,7 @@ import {Button} from 'react-bootstrap'
 import {FaGlobeAmericas} from 'react-icons/fa'
 import {RiAddCircleFill} from 'react-icons/ri'
 import { useAuth } from "../Context/AuthContext"
-import Login from '../components/Login'
+import DetailTable from './DetailTable';
 
 const CoinOverview = (props) => {
     const [coin, setCoin] = useState({})
@@ -29,7 +29,7 @@ const CoinOverview = (props) => {
             if(response.ok){
             response.json().then((json) => {
                 setCoin(json.data.coin)
-                console.log(coin.color)
+                console.log(coin)
 
             })
             }
@@ -95,23 +95,22 @@ const CoinOverview = (props) => {
                 }
                 </div>
             </div>
-            <div className="row">
-                <div className="col-sm-12">
-                <div style={{height:'430px'}}>
-                <Chart data={coinHistory} className="chartContainer" color={coin.color} />
+            <div className="row px-3">
+                <div className="col-sm-8">
+                    <div style={{height:'430px'}}>
+                    <Chart data={coinHistory} className="chartContainer" color={coin.color} />
+                    </div>
+                    <div style={{textAlign:'center'}}>
+                        <button onClick={() => changeTimeFrame('7d')} className="timeBtn">7d</button>
+                        <button onClick={() => changeTimeFrame('30d')} className="timeBtn">30d</button>
+                        <button onClick={() => changeTimeFrame('1y')} className="timeBtn">1y</button>
+                        <button onClick={() => changeTimeFrame('5y')} className="timeBtn">5y</button>
+                    </div>
                 </div>
-                <div style={{textAlign:'center'}}>
-            <button onClick={() => changeTimeFrame('7d')} className="timeBtn">7d</button>
-            <button onClick={() => changeTimeFrame('30d')} className="timeBtn">30d</button>
-            <button onClick={() => changeTimeFrame('1y')} className="timeBtn">1y</button>
-            <button onClick={() => changeTimeFrame('5y')} className="timeBtn">5y</button>
-            </div>
+                <div className="col-sm-4" style={{paddingTop:'5px'}}>
+                    <DetailTable volume={coin.volume} rank={coin.rank} cap={coin.marketCap} price={coin.price} name={coin.name}/>
                 </div>
             </div>
-            coin overview
-            {coin.id}
-            {coin.price}
-            
         </div>
     );
 }

@@ -19,9 +19,15 @@ function CustomNav(){
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()
+  
+  let userName = ''
 
+  if(currentUser){
   let userEmail= currentUser.email
-  let userName= userEmail.substr(0, userEmail.indexOf('@')); 
+  userName= userEmail.substr(0, userEmail.indexOf('@')); 
+  } else {
+    userName = ''
+  }
 
   async function handleLogout(){
     setError(' ')
