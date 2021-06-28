@@ -27,8 +27,8 @@ function TinyChart (props) {
           data={data}
           margin={{
             top: 5,
-            right: 30,
-            left: 20,
+            right: 0,
+            left:-35,
             bottom: 5,
           }}
         >

@@ -2,6 +2,18 @@
     width:1000px;
     height:400px;
 }
+table{
+    font-family: 'Questrial', sans-serif;
+    border: 2px solid #ededed !important;
+    color:#585858 !important;
+}
+th{
+    font-weight:600;
+    font-size:18px;
+}
+td:first-child{
+    font-weight: 600;
+}
 .addBtn{
     border-radius:20px;
     margin-top:20px;
@@ -19,14 +31,40 @@
     box-shadow:0px 2px 5px rgb(189, 189, 189);
 }
 .timeBtn{
-    margin: 10px;
-    border-radius: 10px;
-    padding: 6px;
-    border: 1px solid #cecece;
+    margin: 4px 2px;
+    border-radius: 5px;
+    padding: 3px 6px;
+    font-size: 14px;
+    border: 1px solid #e2e2e2;
     font-family: 'Questrial', sans-serif;
     text-transform: uppercase;
-    color:grey;
-    background-color: #dddddd;
+    color: grey;
+    background-color: #f3f3f3;
+}
+.active.timeBtn{
+    margin: 4px 2px;
+    border-radius: 5px;
+    padding: 3px 6px;
+    font-size: 14px;
+    font-family: 'Questrial', sans-serif;
+    text-transform: uppercase;
+    color:rgb(128, 128, 128);
+    background-color: rgb(180, 245, 189);
+    border: 1px solid #05e462;
+}
+.timeTitle{
+    font-family: 'Questrial', sans-serif;
+    color:rgb(121, 121, 121);
+}
+.timeButtons{
+    float: right;
+    margin-top: 5px;
+}
+.coinName{
+    font-family: 'Questrial', sans-serif;
+    color: #585858;
+    font-size: 2rem;
+    font-weight: 700;
 }
 text.recharts-text.recharts-cartesian-axis-tick-value {
     font-family: 'Questrial', sans-serif;
@@ -36,7 +74,8 @@ text.recharts-text.recharts-cartesian-axis-tick-value {
 span.recharts-legend-item-text {
     font-weight: 600;
     font-family: 'Questrial', sans-serif;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
+    font-size: 12px;
 }
 .coinIcon{
     height:30px;

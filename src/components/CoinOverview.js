@@ -6,13 +6,14 @@ import {FaGlobeAmericas} from 'react-icons/fa'
 import {RiAddCircleFill} from 'react-icons/ri'
 import { useAuth } from "../Context/AuthContext"
 import DetailTable from './DetailTable';
+import SupplyChart from './SupplyChart';
 
 const CoinOverview = (props) => {
     const [coin, setCoin] = useState({})
     const [error, setError] = useState(false)
     const [timeFrame, setTimeFrame] = useState('7d')
     const [coinHistory, setCoinHistory] = useState([])
-    const [activeBtn, setActiveBtn] = useState('')
+    const [activeIndex, setActiveIndex] = useState(0)
     const { currentUser } = useAuth()
 
     const coinId = props.match.params.coinId
@@ -29,8 +30,7 @@ const CoinOverview = (props) => {
             if(response.ok){
             response.json().then((json) => {
                 setCoin(json.data.coin)
-                console.log(coin)
-
+                console.log(json.data.coin)
             })
             }
         })
@@ -61,9 +61,9 @@ const CoinOverview = (props) => {
         });
         }, [timeFrame]);
 
-        function changeTimeFrame(time){
+        function changeTimeFrame(time, index){
             setTimeFrame(time)
-            setActiveBtn('active')
+            setActiveIndex(index)
         }
 
         function addToWallet(){
@@ -79,10 +79,10 @@ const CoinOverview = (props) => {
                         <div className="nameContainer">{coin.name} ({coin.symbol})</div>
                     </div>
                 </div>
-                <div className="col-sm-6 pr-4 align-middle text-right">
+                <div className="col-sm-6 pr-0 align-middle text-right">
                 { !currentUser && 
                 <>
-                <a style={{fontSize: "15px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
+                <a style={{fontSize: "15px"}} href={coin.websiteUrl} target="_blank"><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
                 </>
                 }
                 { currentUser &&
@@ -95,20 +95,42 @@ const CoinOverview = (props) => {
                 }
                 </div>
             </div>
-            <div className="row px-3">
-                <div className="col-sm-8">
+            <div className="row px-2 mx-1">
+                <div className="col-sm-12">
+                <div>
+                <span className="coinName">{coin.name} Pricing</span>
+                <span className="timeButtons">
+                        <button onClick={() => changeTimeFrame('7d', 0)} className={activeIndex === 0 ? "active timeBtn" : "timeBtn"}>7d</button>
+                        <button onClick={() => changeTimeFrame('30d', 1)} className={activeIndex === 1 ? "active timeBtn" : "timeBtn"}>30d</button>
+                        <button onClick={() => changeTimeFrame('1y', 2)} className={activeIndex === 2 ? "active timeBtn" : "timeBtn"}>1y</button>
+                        <button onClick={() => changeTimeFrame('5y', 3)} className={activeIndex === 3 ? "active timeBtn" : "timeBtn"}>5y</button>
+                    </span>
+                </div>
                     <div style={{height:'430px'}}>
                     <Chart data={coinHistory} className="chartContainer" color={coin.color} />
                     </div>
-                    <div style={{textAlign:'center'}}>
-                        <button onClick={() => changeTimeFrame('7d')} className="timeBtn">7d</button>
-                        <button onClick={() => changeTimeFrame('30d')} className="timeBtn">30d</button>
-                        <button onClick={() => changeTimeFrame('1y')} className="timeBtn">1y</button>
-                        <button onClick={() => changeTimeFrame('5y')} className="timeBtn">5y</button>
-                    </div>
                 </div>
-                <div className="col-sm-4" style={{paddingTop:'5px'}}>
-                    <DetailTable volume={coin.volume} rank={coin.rank} cap={coin.marketCap} price={coin.price} name={coin.name}/>
+            </div>
+            <div className="row px-3 py-4">
+                <div className="col-sm-6">
+                <h3>{coin.name} Statistics</h3>
+                    <DetailTable
+                        supply={coin.totalSupply}
+                        circulating={coin.circulatingSupply}
+                        volume={coin.volume}
+                        rank={coin.rank}
+                        cap={coin.marketCap}
+                        price={coin.price}
+                        name={coin.name}/>
+                </div>
+                <div className="col-sm-6">
+                    <h3>{coin.name} Supply</h3>
+                    <div style={{height:'350px', marginTop:'20px'}}>
+                    <SupplyChart
+                    supply={coin.totalSupply}
+                    circulating={coin.circulatingSupply}
+                    />
+                    </div>
                 </div>
             </div>
         </div>
