@@ -4,9 +4,12 @@ import '../components/CSS/Overview.css'
 import {Button} from 'react-bootstrap'
 import {FaGlobeAmericas} from 'react-icons/fa'
 import {RiAddCircleFill} from 'react-icons/ri'
+import { MdTrendingDown, MdTrendingUp } from "react-icons/md";
 import { useAuth } from "../Context/AuthContext"
 import DetailTable from './DetailTable';
 import SupplyChart from './SupplyChart';
+import NewsFeeds from '../components/NewsFeed'
+import NewsFeed from '../components/NewsFeed';
 
 const CoinOverview = (props) => {
     const [coin, setCoin] = useState({})
@@ -73,7 +76,7 @@ const CoinOverview = (props) => {
     return (
         <div>
             <div className="row p-2 mx-4 mt-2 mb-3" style={{borderBottom: '2px solid #e3e3e3'}}>
-                <div className="col-sm-6 pl-4">
+                <div className="col-sm-6 pl-0">
                     <div className="coinDetails">
                         <div className="iconContainer"><img src={coin.iconUrl} className="coinIcon"></img></div>
                         <div className="nameContainer">{coin.name} ({coin.symbol})</div>
@@ -98,7 +101,18 @@ const CoinOverview = (props) => {
             <div className="row px-2 mx-1">
                 <div className="col-sm-12">
                 <div>
-                <span className="coinName">{coin.name} Pricing</span>
+                <span className="coinName">{'Current Price: $' + Number(coin.price).toFixed(2)}</span>
+                { coin.change > 0 && 
+                <>
+                <div className="posChange"><MdTrendingUp/>{coin.change} %</div>
+                </>
+                }
+                {
+                 coin.change < 0 &&
+                 <>
+                 <div className="negChange"><MdTrendingDown/>{coin.change} %</div>
+                 </>
+                }
                 <span className="timeButtons">
                         <button onClick={() => changeTimeFrame('7d', 0)} className={activeIndex === 0 ? "active timeBtn" : "timeBtn"}>7d</button>
                         <button onClick={() => changeTimeFrame('30d', 1)} className={activeIndex === 1 ? "active timeBtn" : "timeBtn"}>30d</button>
@@ -111,7 +125,7 @@ const CoinOverview = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="row px-3 py-4">
+            <div className="row p-4">
                 <div className="col-sm-6">
                 <h3>{coin.name} Statistics</h3>
                     <DetailTable
@@ -133,6 +147,12 @@ const CoinOverview = (props) => {
                     </div>
                 </div>
             </div>
+            <div className="row p-3">
+                <div className="col-sm-12">
+                    <h3>{coin.name} News</h3>
+                </div>
+                <NewsFeed coinName={coin.name}/>
+                </div>
         </div>
     );
 }

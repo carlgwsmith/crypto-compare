@@ -14,6 +14,28 @@ th{
 td:first-child{
     font-weight: 600;
 }
+.posChange{
+    display:inline-block;
+    padding:5px;
+    background-color:#b4f5bd;
+    color:rgb(9, 153, 52);
+    border-radius:5px;
+    margin-left:10px;
+    margin-top:-3px;
+    font-size:12px;
+    font-weight:600;
+}
+.negChange{
+    display:inline-block;
+    padding:5px;
+    background-color:#f5b4b4;
+    color:rgb(153, 9, 9);
+    border-radius:5px;
+    margin-left:10px;
+    margin-top:-3px;
+    font-size:12px;
+    font-weight:600;
+}
 .addBtn{
     border-radius:20px;
     margin-top:20px;
@@ -32,25 +54,24 @@ td:first-child{
 }
 .timeBtn{
     margin: 4px 2px;
-    border-radius: 5px;
     padding: 3px 6px;
     font-size: 14px;
-    border: 1px solid #e2e2e2;
     font-family: 'Questrial', sans-serif;
     text-transform: uppercase;
-    color: grey;
-    background-color: #f3f3f3;
+    color: rgb(128, 128, 128);
+    background-color: #f8f9fd;
+    border-bottom: 2px solid #00a1ff;
+    border:none;
 }
 .active.timeBtn{
     margin: 4px 2px;
-    border-radius: 5px;
     padding: 3px 6px;
     font-size: 14px;
     font-family: 'Questrial', sans-serif;
     text-transform: uppercase;
-    color:rgb(128, 128, 128);
-    background-color: rgb(180, 245, 189);
-    border: 1px solid #05e462;
+    color: rgb(128, 128, 128);
+    background-color: #f8f9fd;
+    border-bottom: 2px solid #00a1ff;
 }
 .timeTitle{
     font-family: 'Questrial', sans-serif;
@@ -59,11 +80,15 @@ td:first-child{
 .timeButtons{
     float: right;
     margin-top: 5px;
+    padding: 0px 10px;
+    border: 1px solid #eaecfb;
+    border-radius: 8px;
+    background-color: #f8f9fd;
 }
 .coinName{
     font-family: 'Questrial', sans-serif;
     color: #585858;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 text.recharts-text.recharts-cartesian-axis-tick-value {
@@ -94,7 +119,27 @@ span.recharts-legend-item-text {
     padding-right: 10px;
     display: inline-block;
 }
+.via{
+    font-size:12px;
+    margin-bottom:10px;
+}
 .nameContainer{
     margin-top:10px;
     display: inline-block;
+}
+.newsHeadline{
+    font-size:16px;
+    font-weight:600;
+    font-family: 'Questrial', sans-serif;
+    margin-bottom: 0px;
+}
+.newsSummary{
+    font-size:12px;
+    font-weight:400;
+    color:#444 !important
+}
+.newsMedia{
+    width:200px;
+    border-radius:10px;
+
 }
