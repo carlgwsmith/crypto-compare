@@ -30,7 +30,7 @@ function App() {
         <PrivateRoute path="/update-profile" component={UpdateProfile}/>
         <PrivateRoute path="/Profile" component={Profile}/>
         <PrivateRoute path="/Portfolio" component={Portfolio}/>
-        <Route path="/coin/:coinId" render={(props) => (
+        <Route path="/coin/:coinName/:coinId" render={(props) => (
           <CoinOverview {...props} />
         )}/>
         </Switch>

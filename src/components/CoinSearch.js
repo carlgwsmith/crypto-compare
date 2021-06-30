@@ -25,8 +25,8 @@ useEffect(() => {
     for(let i=0; i < coins.length; i++){
         optionsArray.push({
             id:i,
-            label: coins[i].name,
-            path: '/coin/' + coins[i].id
+            label: coins[i].symbol + " (" + coins[i].name + ")",
+            path: '/coin/' + coins[i].name +'/' + coins[i].id
         })
     }
 

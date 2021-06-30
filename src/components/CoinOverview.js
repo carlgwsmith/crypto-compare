@@ -18,10 +18,15 @@ const CoinOverview = (props) => {
     const [coinHistory, setCoinHistory] = useState([])
     const [activeIndex, setActiveIndex] = useState(0)
     const { currentUser } = useAuth()
+    const [loading, setLoading] = useState(false)
+    const [news, setNews] = useState([])
+
 
     const coinId = props.match.params.coinId
+    const coinName = props.match.params.coinName
 
     useEffect(() => {
+        setLoading(true)
         fetch("https://coinranking1.p.rapidapi.com/coin/" + coinId, {
             "method": "GET",
             "headers": {
@@ -30,18 +35,40 @@ const CoinOverview = (props) => {
             }
         })
         .then(response => {
+            setLoading(true)
             if(response.ok){
             response.json().then((json) => {
                 setCoin(json.data.coin)
                 console.log(json.data.coin)
+                setLoading(false)
             })
             }
         })
         .catch(err => {
-            setError('No Coins Yet')
+            setError('No Coins Yet' + err)
         });
-        }, []);
-    
+    }, []);
+
+    useEffect(() => {
+        fetch("https://free-news.p.rapidapi.com/v1/search?q=Crypto%20"+coinName+"&lang=en", {
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+        "x-rapidapi-host": "free-news.p.rapidapi.com"
+    }
+    })
+    .then(response => {
+        if(response.ok){
+            response.json().then((json) => {
+                console.log(json.articles)
+                setNews(json.articles)
+            })
+            }
+    })
+    .catch(err => {
+        console.error(err);
+    });
+    }, []);
     
     useEffect(() => {
         fetch("https://coinranking1.p.rapidapi.com/coin/" + coinId + "/history/" + timeFrame, {
@@ -62,17 +89,22 @@ const CoinOverview = (props) => {
         .catch(err => {
             setError('No Coins Yet')
         });
-        }, [timeFrame]);
+    }, [timeFrame]);
 
-        function changeTimeFrame(time, index){
-            setTimeFrame(time)
-            setActiveIndex(index)
-        }
 
-        function addToWallet(){
-            console.log('added')
-        }
+    function changeTimeFrame(time, index){
+        setTimeFrame(time)
+        setActiveIndex(index)
+    }
 
+    function addToWallet(){
+        console.log('added')
+    }
+
+
+    if(loading){
+        return <h1>loading...</h1>;      
+    }
     return (
         <div>
             <div className="row p-2 mx-4 mt-2 mb-3" style={{borderBottom: '2px solid #e3e3e3'}}>
@@ -85,7 +117,7 @@ const CoinOverview = (props) => {
                 <div className="col-sm-6 pr-0 align-middle text-right">
                 { !currentUser && 
                 <>
-                <a style={{fontSize: "15px"}} href={coin.websiteUrl} target="_blank"><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
+                <a style={{fontSize: "15px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
                 </>
                 }
                 { currentUser &&
@@ -151,7 +183,7 @@ const CoinOverview = (props) => {
                 <div className="col-sm-12">
                     <h3>{coin.name} News</h3>
                 </div>
-                <NewsFeed coinName={coin.name}/>
+                <NewsFeed news={news}/>
                 </div>
         </div>
     );
