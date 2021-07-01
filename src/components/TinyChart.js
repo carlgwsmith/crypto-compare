@@ -9,11 +9,9 @@ function TinyChart (props) {
 
   const currencyFormatter = (item) => numeral(item).format('$0,0')
 
-  console.log('color' + coinColor)
   
   useEffect(() => {
     setData(props.data)
-    console.log(props.data)
     if (props.color){
       setCoinColor(props.color)
     }else(

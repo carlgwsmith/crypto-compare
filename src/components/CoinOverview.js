@@ -6,13 +6,14 @@ import {FaGlobeAmericas} from 'react-icons/fa'
 import {RiAddCircleFill} from 'react-icons/ri'
 import { MdTrendingDown, MdTrendingUp } from "react-icons/md";
 import { useAuth } from "../Context/AuthContext"
+import {database} from "../firebase"
 import DetailTable from './DetailTable';
 import SupplyChart from './SupplyChart';
-import NewsFeeds from '../components/NewsFeed'
 import NewsFeed from '../components/NewsFeed';
 
 const CoinOverview = (props) => {
     const [coin, setCoin] = useState({})
+    const [prevCoins, setPrevCoins] = useState([])
     const [error, setError] = useState(false)
     const [timeFrame, setTimeFrame] = useState('7d')
     const [coinHistory, setCoinHistory] = useState([])
@@ -20,10 +21,50 @@ const CoinOverview = (props) => {
     const { currentUser } = useAuth()
     const [loading, setLoading] = useState(false)
     const [news, setNews] = useState([])
+    const [success, setSuccess] = useState('')
 
 
     const coinId = props.match.params.coinId
     const coinName = props.match.params.coinName
+
+    function getCoins(){
+        setLoading(true)
+        database.users.doc(currentUser.uid).get().then(
+        doc => {
+            let data = (doc.data());
+            console.log(data);
+            if(data === undefined){
+                console.log('first timer')
+            }else{
+                const dataArray = Object.entries(data);
+                setPrevCoins(dataArray.[0].[1])
+            }
+        }
+        )
+        setLoading(false)
+        console.log('success')
+    }
+
+    function addCoinToList () {
+        console.log(prevCoins)
+         let coinToSubmit = {
+             id: coin.uuid,
+             name: coin.name,
+             price: coin.price,
+             symbol: coin.symbol
+         }
+
+         const submitArray = [...prevCoins, coinToSubmit];
+         console.log(submitArray);
+         database.users.doc(currentUser.uid).set({
+             coins: submitArray
+     });
+         setSuccess('Coin(s) Added')
+     }
+
+    useEffect(() => {
+        getCoins()
+    }, []);
 
     useEffect(() => {
         setLoading(true)
@@ -82,7 +123,6 @@ const CoinOverview = (props) => {
             if(response.ok){
             response.json().then((json) => {
                 setCoinHistory(json.data.history)
-                console.log(coinHistory)
             })
             }
         })
@@ -95,10 +135,6 @@ const CoinOverview = (props) => {
     function changeTimeFrame(time, index){
         setTimeFrame(time)
         setActiveIndex(index)
-    }
-
-    function addToWallet(){
-        console.log('added')
     }
 
 
@@ -123,7 +159,7 @@ const CoinOverview = (props) => {
                 { currentUser &&
                 <>
                 <a style={{fontSize: "15px", marginRight: "10px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
-                <Button variant="success" onClick={addToWallet} className="addBtn">
+                <Button variant="success" onClick={addCoinToList} className="addBtn">
                     <RiAddCircleFill style={{marginTop: '-2px'}}/> Add to Wallet
                 </Button>
                 </>

@@ -2,10 +2,18 @@
     width:1000px;
     height:400px;
 }
+.statsTable{
+   border: 2px solid #eaecfb;
+   border-radius:5px;
+}
 table{
     font-family: 'Questrial', sans-serif;
-    border: 2px solid #ededed !important;
-    color:#585858 !important;
+    border: 0px !important;
+    color: #585858 !important;
+    margin-bottom:0px;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fd !important;
 }
 th{
     font-weight:600;

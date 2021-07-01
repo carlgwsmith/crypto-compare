@@ -7,7 +7,7 @@ const currencyFormatter = (item) => numeral(item).format('$0,0')
 
 const DetailTable = (props) => {
 return (
-    <div>
+    <div class="statsTable">
         <Table striped bordered hover variant="light">
             <tbody>
                 <tr>
