@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Chart from '../components/TinyChart'
 import '../components/CSS/Overview.css'
 import {Button} from 'react-bootstrap'
-import {FaGlobeAmericas} from 'react-icons/fa'
+import {FaGlobeAmericas, FaCheckCircle} from 'react-icons/fa'
 import {RiAddCircleFill} from 'react-icons/ri'
 import { MdTrendingDown, MdTrendingUp } from "react-icons/md";
 import { useAuth } from "../Context/AuthContext"
@@ -10,6 +10,7 @@ import {database} from "../firebase"
 import DetailTable from './DetailTable';
 import SupplyChart from './SupplyChart';
 import NewsFeed from '../components/NewsFeed';
+import styled, { keyframes } from "styled-components";
 
 const CoinOverview = (props) => {
     const [coin, setCoin] = useState({})
@@ -21,7 +22,10 @@ const CoinOverview = (props) => {
     const { currentUser } = useAuth()
     const [loading, setLoading] = useState(false)
     const [news, setNews] = useState([])
-    const [success, setSuccess] = useState('')
+    const [success, setSuccess] = useState(false)
+    const [sending, setSending] = useState(false)
+    const [disabled, setDisabled] = useState(false);
+    const [added, setAdded] = useState(false)
 
 
     const coinId = props.match.params.coinId
@@ -47,6 +51,7 @@ const CoinOverview = (props) => {
 
     function addCoinToList () {
         console.log(prevCoins)
+
          let coinToSubmit = {
              id: coin.uuid,
              name: coin.name,
@@ -54,17 +59,35 @@ const CoinOverview = (props) => {
              symbol: coin.symbol
          }
 
+         if(prevCoins.filter(coinToSubmit => coinToSubmit.name === coin.name).length > 0){
+             console.log('true')
+             setAdded(true)
+         }else{
+            if (sending || disabled) {
+                return;
+              }
+              setSending(true);
+              setDisabled(true);
+              setTimeout(() => {
+                setSuccess(true);
+                setSending(false);
+                setTimeout(() => {
+                  setSuccess(false);
+                  setDisabled(false);
+                }, 1500);
+              }, 2000);
+              
          const submitArray = [...prevCoins, coinToSubmit];
          console.log(submitArray);
          database.users.doc(currentUser.uid).set({
-             coins: submitArray
-     });
-         setSuccess('Coin(s) Added')
+             coins: submitArray})
+        }
      }
 
     useEffect(() => {
         getCoins()
     }, []);
+
 
     useEffect(() => {
         setLoading(true)
@@ -151,17 +174,38 @@ const CoinOverview = (props) => {
                     </div>
                 </div>
                 <div className="col-sm-6 pr-0 align-middle text-right">
-                { !currentUser && 
+                { !currentUser && added && 
                 <>
                 <a style={{fontSize: "15px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
                 </>
                 }
                 { currentUser &&
                 <>
-                <a style={{fontSize: "15px", marginRight: "10px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
-                <Button variant="success" onClick={addCoinToList} className="addBtn">
+                <a style={{fontSize: "15px", marginRight: "10px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{color: '#c3c3c3'}}/></a>
+                {/* <Button variant="success" onClick={addCoinToList} className="addBtn">
                     <RiAddCircleFill style={{marginTop: '-2px'}}/> Add to Wallet
-                </Button>
+                </Button> */}
+                <StyledButton
+                    type="button"
+                    disabled={disabled}
+                    onClick={addCoinToList}
+                    className={`${success && "button-success"}`}
+                >
+                    {sending && (
+                    <div>
+                        <StyledSpiner /> Adding Coin
+                    </div>
+                    )}
+                    {success && 
+                    <>
+                    <FaCheckCircle/> Success
+                    </>
+                    }
+                    {added &&
+                    <span>Already Added</span>
+                    }
+                    {!sending && !added && !success && <span><RiAddCircleFill style={{marginTop: '-2px'}}/> Add to Wallet</span>}
+                </StyledButton>
                 </>
                 }
                 </div>
@@ -224,5 +268,60 @@ const CoinOverview = (props) => {
         </div>
     );
 }
+
+
+const StyledButton = styled.button`
+  border: none;
+  min-height: 40px;
+  min-width: 200px;
+  margin-top:14px;
+  padding: 0 24px;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  transition: width 500ms, background-color 120ms;
+  overflow: hidden;
+  background-color: #007aff;
+  &.button-success {
+    background-color: #28cd41;
+  }
+  &:focus {
+    outline: none;
+  }
+  &,
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: #007aff;
+  }
+`;
+
+const spin = keyframes`
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }`;
+
+const StyledSpiner = styled.span`
+  display: inline-block;
+  margin: 0 8px;
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.215em solid transparent;
+  vertical-align: middle;
+  font-size: 10px;
+  border-top-color: white;
+  animation: ${spin} .5s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+`;
+
 
 export default CoinOverview;
