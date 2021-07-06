@@ -31,6 +31,11 @@ const CoinOverview = (props) => {
     const coinId = props.match.params.coinId
     const coinName = props.match.params.coinName
 
+    function changeTimeFrame(time, index){
+        setTimeFrame(time)
+        setActiveIndex(index)
+    }
+    
     function getCoins(){
         setLoading(true)
         database.users.doc(currentUser.uid).get().then(
@@ -56,7 +61,8 @@ const CoinOverview = (props) => {
              id: coin.uuid,
              name: coin.name,
              price: coin.price,
-             symbol: coin.symbol
+             symbol: coin.symbol,
+             history: coin.history
          }
 
          if(prevCoins.filter(coinToSubmit => coinToSubmit.name === coin.name).length > 0){
@@ -161,12 +167,6 @@ const CoinOverview = (props) => {
             setError('No Coins Yet')
         });
     }, [timeFrame]);
-
-
-    function changeTimeFrame(time, index){
-        setTimeFrame(time)
-        setActiveIndex(index)
-    }
 
 
     if(loading){
