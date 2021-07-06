@@ -60,7 +60,6 @@ const CoinOverview = (props) => {
          }
 
          if(prevCoins.filter(coinToSubmit => coinToSubmit.name === coin.name).length > 0){
-             console.log('true')
              setAdded(true)
          }else{
             if (sending || disabled) {
@@ -88,6 +87,12 @@ const CoinOverview = (props) => {
         getCoins()
     }, []);
 
+    useEffect(() => {
+        if (prevCoins.filter(coinToSubmit => coinToSubmit.name === coin.name).length > 0){
+            console.log('added already')
+            setAdded(true)
+        }
+    }, [prevCoins]);
 
     useEffect(() => {
         setLoading(true)
@@ -174,12 +179,12 @@ const CoinOverview = (props) => {
                     </div>
                 </div>
                 <div className="col-sm-6 pr-0 align-middle text-right">
-                { !currentUser && added && 
+                { !currentUser && !added && 
                 <>
                 <a style={{fontSize: "15px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{marginTop: '20px', color: '#c3c3c3'}}/></a>
                 </>
                 }
-                { currentUser &&
+                { currentUser && !added &&
                 <>
                 <a style={{fontSize: "15px", marginRight: "10px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{color: '#c3c3c3'}}/></a>
                 {/* <Button variant="success" onClick={addCoinToList} className="addBtn">
@@ -205,6 +210,18 @@ const CoinOverview = (props) => {
                     <span>Already Added</span>
                     }
                     {!sending && !added && !success && <span><RiAddCircleFill style={{marginTop: '-2px'}}/> Add to Wallet</span>}
+                </StyledButton>
+                </>
+                }
+                { currentUser && added &&
+                <>
+                <a style={{fontSize: "15px", marginRight: "10px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{color: '#c3c3c3'}}/></a>
+                <StyledButton
+                    type="button"
+                    disabled={disabled}
+                    className={success}
+                >
+                <span><RiAddCircleFill style={{marginTop: '-2px'}}/> Already Added</span>
                 </StyledButton>
                 </>
                 }
@@ -259,12 +276,14 @@ const CoinOverview = (props) => {
                     </div>
                 </div>
             </div>
+            {news &&
             <div className="row p-3">
                 <div className="col-sm-12">
                     <h3>{coin.name} News</h3>
                 </div>
                 <NewsFeed news={news}/>
-                </div>
+            </div>
+            }
         </div>
     );
 }
