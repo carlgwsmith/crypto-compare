@@ -75,6 +75,9 @@ const CoinOverview = (props) => {
                   setDisabled(false);
                 }, 1500);
               }, 2000);
+              setTimeout(() => {
+                  setAdded(true)
+              }, 3500);
               
          const submitArray = [...prevCoins, coinToSubmit];
          console.log(submitArray);
@@ -219,7 +222,7 @@ const CoinOverview = (props) => {
                 <StyledButton
                     type="button"
                     disabled={disabled}
-                    className={success}
+                    className={`${"button-disable"}`}
                 >
                 <span><RiAddCircleFill style={{marginTop: '-2px'}}/> Already Added</span>
                 </StyledButton>
@@ -308,6 +311,17 @@ const StyledButton = styled.button`
   background-color: #007aff;
   &.button-success {
     background-color: #28cd41;
+  }
+  &.button-success:hover{
+    background-color:#28cd41;
+  }
+  &.button-disable{
+    background-color:#e4e4e4;
+    color:#444
+  }
+  &.button-disable:focus, &.button-disable:hover{
+      background-color: #d6d6d6 !important;
+      color:444;
   }
   &:focus {
     outline: none;
