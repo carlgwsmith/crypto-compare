@@ -46,7 +46,12 @@ const CoinOverview = (props) => {
                 console.log('first timer')
             }else{
                 const dataArray = Object.entries(data);
+                if(dataArray.length === 0){
+                    setError('No Coins')
+                    console.log(error)
+                }else{
                 setPrevCoins(dataArray.[0].[1])
+                }
             }
         }
         )
@@ -62,7 +67,7 @@ const CoinOverview = (props) => {
              name: coin.name,
              price: coin.price,
              symbol: coin.symbol,
-             history: coin.history
+             history: coinHistory
          }
 
          if(prevCoins.filter(coinToSubmit => coinToSubmit.name === coin.name).length > 0){
