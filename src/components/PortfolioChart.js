@@ -50,19 +50,16 @@ export default function PortfolioChart(props) {
 const [data, setData] = useState([])
 const [history, setHistory] =useState([])
 
-function historyFinder (){
-  let historyArray=[];
-  for(let i = 0; i < data.length; i++){
-    historyArray.push(data.[i].history);
-  }
-  setHistory(historyArray)
-}
+// function historyFinder (){
+//   let historyArray=[];
+//   for(let i = 0; i < data.length; i++){
+//     historyArray.push(data.[i].history);
+//   }
+//   setHistory(historyArray)
+// }
 useEffect(() => {
-  historyFinder()
-  setTimeout(() => {
-    console.log(history)
-  }, 3000);
-}, [data]);
+  setHistory(props.data)
+}, []);
 
 useEffect(() => {
   setData(props.data)
@@ -70,7 +67,6 @@ useEffect(() => {
     console.log(data)
   }, 1500);
 }, [props.data]);
-
 
 
   return (
@@ -87,16 +83,15 @@ useEffect(() => {
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis datakey="timestamp"/>
-      <YAxis />
+      <YAxis/>
       <Tooltip />
       <Legend />
-      <Line
-        type="monotone"
-        dataKey="price"
-        stroke="#8884d8"
-        activeDot={{ r: 8 }}
-      />
-      <Line type="monotone" stroke="#82ca9d" datakey="price"/>
+      {/* {
+      data.map((index) => {
+      return (<Line data={`price_${index}`} dataKey="price"/>)
+    })
+  } */}
+  <Line type="monotone" stroke="#82ca9d" datakey="price"/>
     </LineChart>
   );
 }
