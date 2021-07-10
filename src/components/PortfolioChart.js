@@ -86,11 +86,12 @@ useEffect(() => {
       <YAxis/>
       <Tooltip />
       <Legend />
-      {/* {
-      data.map((index) => {
-      return (<Line data={`price_${index}`} dataKey="price"/>)
+      {
+      data.map((i) => {
+      // return (<Line data={`price_${index}`} dataKey="price"/>)
+      return (<Line data={i.history} dataKey="price"/>)
     })
-  } */}
+  }
   <Line type="monotone" stroke="#82ca9d" datakey="price"/>
     </LineChart>
   );

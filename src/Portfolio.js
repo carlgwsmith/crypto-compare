@@ -18,7 +18,10 @@ function Portfolio() {
       // console.log(coins.indexOf([i]))
       // for(var x =0; x < 160; x++){
       //   if(coins.indexOf([i])){
-      historyArr.push({index: i, name: coins.[i].name, ['price_' + i]: coins.[i].history})
+      historyArr.push({
+        index: i,
+        name: coins.[i].name,
+        hisotry: coins.[i].history})
       }
     setCoinHistory(historyArr)
     console.log(historyArr)
@@ -54,7 +57,7 @@ useEffect(() => {
         <div className="row">
         <div style={{height:'430px'}}>
           {coins &&
-            <Chart data={coinHistory} className="chartContainer" />
+            <Chart data={coins} className="chartContainer" />
             }
         </div>
           <div className="col-sm-12">Portfolio</div>
