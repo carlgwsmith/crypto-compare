@@ -8,28 +8,9 @@ function Portfolio() {
   const [coins, setCoins] = useState([])
   const [loading, setLoading] = useState(false)
   const { currentUser } = useAuth()
-  const [coinHistory, setCoinHistory] = useState({})
   // const [colors, setColors] = useState([])
 
-  function historyFinder() {
-    let historyArr = []
 
-    for (var i = 0; i < coins.length; i++){
-      // console.log(coins.indexOf([i]))
-      // for(var x =0; x < 160; x++){
-      //   if(coins.indexOf([i])){
-      historyArr.push({
-        index: i,
-        name: coins.[i].name,
-        hisotry: coins.[i].history})
-      }
-    setCoinHistory(historyArr)
-    console.log(historyArr)
-  }
-
-  useEffect(() => {
-    historyFinder()
-  }, [coins]);
 
 useEffect(() => {
   setLoading(true)
@@ -47,6 +28,9 @@ useEffect(() => {
   setLoading(false)
   console.log(coins)
 }, []);
+useEffect(() => {
+  
+}, [coins]);
 
   if(loading || !coins){
         return <h1>loading...</h1>;      
@@ -55,16 +39,19 @@ useEffect(() => {
     <div className="Results">
       <header className="App-header">
         <div className="row">
+        <div className="col-sm-12">
         <div style={{height:'430px'}}>
           {coins &&
             <Chart data={coins} className="chartContainer" />
             }
+        </div>
         </div>
           <div className="col-sm-12">Portfolio</div>
           <ul>
           {coins.slice(0,20).map((coin, index) => (
               <li key={index}>
                 {coin.name}
+                {coin.color}
               </li>
             ))}
             </ul>

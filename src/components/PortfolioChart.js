@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {LineChart,Line,XAxis,YAxis,CartesianGrid,Tooltip,Legend} from "recharts";
+import {AreaChart,Area,XAxis,YAxis,CartesianGrid,Tooltip,Legend, ResponsiveContainer} from "recharts";
+import moment from 'moment'
+import numeral from 'numeral'
 
 const data1 = [
   {
@@ -48,7 +50,7 @@ const data1 = [
 
 export default function PortfolioChart(props) {
 const [data, setData] = useState([])
-const [history, setHistory] =useState([])
+//const [history, setHistory] =useState([])
 
 // function historyFinder (){
 //   let historyArray=[];
@@ -58,7 +60,7 @@ const [history, setHistory] =useState([])
 //   setHistory(historyArray)
 // }
 useEffect(() => {
-  setHistory(props.data)
+  //setHistory(props.data)
 }, []);
 
 useEffect(() => {
@@ -68,11 +70,11 @@ useEffect(() => {
   }, 1500);
 }, [props.data]);
 
+const currencyFormatter = (item) => numeral(item).format('$0,0')
 
   return (
-    <LineChart
-      width={500}
-      height={300}
+    <ResponsiveContainer width="100%" height="100%">
+    <AreaChart
       data={data}
       margin={{
         top: 5,
@@ -82,17 +84,22 @@ useEffect(() => {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis datakey="timestamp"/>
-      <YAxis/>
-      <Tooltip />
+      <XAxis dataKey="timestamp" tickFormatter={(unixTime) => moment(unixTime).format('MM/DD/YYYY')} allowDuplicatedCategory={false}/>
+      <YAxis tickFormatter= {currencyFormatter} dataKey="price" type="number" domain={[0, 'auto']} allowDataOverflow={false}/>
+      <Tooltip labelFormatter={t => new Date(t).toLocaleString()}/>
       <Legend />
       {
       data.map((i) => {
-      // return (<Line data={`price_${index}`} dataKey="price"/>)
-      return (<Line data={i.history} dataKey="price"/>)
-    })
+        return (<Area data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2} fillOpacity={.4} fill={i.color}/>)
+      // if(i.color == null){
+      //   return (<Line data={i.history} dataKey="price" name={i.name} stroke="#14ce71" dot={false} strokeWidth={2}/>)
+      //   } else {
+      //     return (<Line data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2}/>)
+      //   }
+      }
+    )
   }
-  <Line type="monotone" stroke="#82ca9d" datakey="price"/>
-    </LineChart>
+    </AreaChart>
+    </ResponsiveContainer>
   );
 }

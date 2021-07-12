@@ -63,12 +63,20 @@ const CoinOverview = (props) => {
         console.log(prevCoins)
 
          let coinToSubmit = {
-             id: coin.uuid,
+             uuid: coin.uuid,
+             id: coin.id,
              name: coin.name,
              price: coin.price,
              symbol: coin.symbol,
-             history: coinHistory
-         }
+             history: coinHistory,
+             color: coin.color
+            }
+        
+        if(coin.color){
+            coinToSubmit.color = coin.color
+        }else{
+            coinToSubmit.color = '#14ce71'
+        }
 
          if(prevCoins.filter(coinToSubmit => coinToSubmit.name === coin.name).length > 0){
              setAdded(true)
