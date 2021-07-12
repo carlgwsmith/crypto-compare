@@ -29,9 +29,12 @@ function truncateString(string, limit) {
   function deleteCoin(){
     const coin = {
       id: props.id,
+      uuid: props.uuid,
       name: props.name,
       price: props.price,
-      symbol: props.symbol
+      symbol: props.symbol,
+      history: props.history,
+      color: props.color
     }
     console.log(coin)
     database.users.doc(currentUser.uid).update({coins: firebase.firestore.FieldValue.arrayRemove(coin)});
@@ -44,7 +47,7 @@ function truncateString(string, limit) {
          <p className="price">${parseFloat(props.price).toFixed(2)}</p>
         </div>
         <div className="col-6">
-          <Button onClick={deleteCoin} style={{borderRadius:'40px', padding:'10px', marginTop:'20px', float:'right'}} variant="danger"><MdDeleteForever style={{fontSize:"1.5em"}}/></Button>
+          <Button onClick={deleteCoin} style={{padding:'10px', marginTop:'20px', float:'right'}} variant="danger"><MdDeleteForever style={{fontSize:"1.5em"}}/></Button>
         </div>
      </div>
  )

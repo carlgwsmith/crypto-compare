@@ -50,16 +50,12 @@ useEffect(() => {
         </div>
         </div>
         <div className="col-sm-12">
-          <Wallet />
+        {coins.map((coin, index) => (
+        <div key={index}>
+            <Wallet name={coin.name} color={coin.color} history={coin.history} id={coin.id} uuid={coin.uuid} price={coin.price} symbol={coin.symbol} />
         </div>
-          <ul>
-          {coins.slice(0,20).map((coin, index) => (
-              <li key={index}>
-                {coin.name}
-                {coin.color}
-              </li>
-            ))}
-            </ul>
+        ))}
+        </div>
         </div>
       </header>
     </div>
