@@ -33,8 +33,6 @@ const Settings = () => {
         <div>
             <h1>Settings</h1>
             <ForgotPassword/>
-            <h2>Add Coins</h2>
-            <AddCoins/>
         </div>
     );
 }

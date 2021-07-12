@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useAuth } from "./Context/AuthContext"
 import {database} from "./firebase"
 import Chart from "./components/PortfolioChart"
+import Wallet from './components/Wallet'
 
 function Portfolio() {
 
@@ -38,15 +39,19 @@ useEffect(() => {
   return (
     <div className="Results">
       <header className="App-header">
-        <div className="row">
+        <div className="row px-2 mx-1">
         <div className="col-sm-12">
+        <h3>Portfolio</h3>
+        <p className="subtitle">Below is a chart of all of your coins and their pricing history.</p>
         <div style={{height:'430px'}}>
           {coins &&
             <Chart data={coins} className="chartContainer" />
             }
         </div>
         </div>
-          <div className="col-sm-12">Portfolio</div>
+        <div className="col-sm-12">
+          <Wallet />
+        </div>
           <ul>
           {coins.slice(0,20).map((coin, index) => (
               <li key={index}>

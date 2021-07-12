@@ -90,7 +90,7 @@ const currencyFormatter = (item) => numeral(item).format('$0,0')
       <Legend />
       {
       data.map((i) => {
-        return (<Area data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2} fillOpacity={.4} fill={i.color}/>)
+        return (<Area data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2} fillOpacity={.1} fill={i.color}/>)
       // if(i.color == null){
       //   return (<Line data={i.history} dataKey="price" name={i.name} stroke="#14ce71" dot={false} strokeWidth={2}/>)
       //   } else {
