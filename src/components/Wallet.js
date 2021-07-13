@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Card, Alert, Button} from 'react-bootstrap'
 import {database} from "../firebase"
 import firebase from 'firebase/app'
-import { MdDeleteForever } from "react-icons/md";
+import {FaRegEye} from "react-icons/fa"
+import { GoTrashcan } from "react-icons/go"
 import { useAuth } from "../Context/AuthContext"
 
 import '../components/CSS/Wallet.css';
@@ -26,6 +27,10 @@ function truncateString(string, limit) {
     }
   }
 
+  function viewCoin(){
+    console.log('view')
+  }
+
   function deleteCoin(){
     const coin = {
       id: props.id,
@@ -47,7 +52,8 @@ function truncateString(string, limit) {
          <p className="price">${parseFloat(props.price).toFixed(2)}</p>
         </div>
         <div className="col-6">
-          <Button onClick={deleteCoin} style={{padding:'10px', marginTop:'20px', float:'right'}} variant="danger"><MdDeleteForever style={{fontSize:"1.5em"}}/></Button>
+          <Button onClick={deleteCoin} style={{padding:'10px', marginTop:'20px', float:'right'}} variant="danger"><GoTrashcan style={{fontSize:"1.2em"}}/> Delete</Button>
+          <Button onClick={viewCoin} style={{padding:'10px', marginTop:'20px', float:'right'}} variant="danger"><FaRegEye style={{fontSize:"1.2em"}}/> View</Button>
         </div>
      </div>
  )

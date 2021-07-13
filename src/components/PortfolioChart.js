@@ -50,25 +50,42 @@ const data1 = [
 
 export default function PortfolioChart(props) {
 const [data, setData] = useState([])
-//const [history, setHistory] =useState([])
-
-// function historyFinder (){
-//   let historyArray=[];
-//   for(let i = 0; i < data.length; i++){
-//     historyArray.push(data.[i].history);
-//   }
-//   setHistory(historyArray)
-// }
-useEffect(() => {
-  //setHistory(props.data)
-}, []);
+const [loading, setLoading] = useState(false)
 
 useEffect(() => {
-  setData(props.data)
-  setTimeout(() => {
-    console.log(data)
-  }, 1500);
+  setLoading(true)
+  let historyArray = []
+    for (let i = 0; i < props.data.length; i++){
+      fetch("https://coinranking1.p.rapidapi.com/coin/"+props.data.[i].id+"/history/30d", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+		"x-rapidapi-host": "coinranking1.p.rapidapi.com"
+	}
+  }).then(response => {
+    if(response.ok){
+    response.json().then((json) => {
+      setData(data => [...data,
+        {
+          id: props.data.[i].id,
+          name: props.data.[i].name,
+          history: json.data.history,
+          color: props.data.[i].color
+        }
+      ])
+    })
+    }
+  })
+    }
+  console.log(historyArray)
 }, [props.data]);
+
+// useEffect(() => {
+//   setData(props.data)
+//   setTimeout(() => {
+//     console.log(data)
+//   }, 1400);
+// }, [props.data]);
 
 const currencyFormatter = (item) => numeral(item).format('$0,0')
 
@@ -90,7 +107,7 @@ const currencyFormatter = (item) => numeral(item).format('$0,0')
       <Legend />
       {
       data.map((i) => {
-        return (<Area data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2} fillOpacity={.1} fill={i.color}/>)
+        return (<Area data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2} fillOpacity={0} fill={i.color}/>)
       // if(i.color == null){
       //   return (<Line data={i.history} dataKey="price" name={i.name} stroke="#14ce71" dot={false} strokeWidth={2}/>)
       //   } else {
