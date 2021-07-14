@@ -17,7 +17,7 @@ function Home() {
               <Signup/>
           </div>
           <div className="col-sm-6">
-  
+            <img src={process.env.PUBLIC_URL + '/cryptodesign.png'} width="100%"></img>
           </div>
         </div>
     </div>

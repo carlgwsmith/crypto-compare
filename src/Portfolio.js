@@ -18,6 +18,7 @@ function Portfolio() {
     setActiveIndex(index)
 }
 
+
 useEffect(() => {
   setLoading(true)
   database.users.doc(currentUser.uid).get().then(
@@ -27,6 +28,7 @@ useEffect(() => {
           console.log('first timer')
       }else{
           const dataArray = Object.entries(data);
+          console.log(dataArray)
           setCoins(dataArray.[0].[1])
       }
   }
@@ -54,7 +56,7 @@ useEffect(() => {
         </span>
         </div>
         <div className="col-sm-12">
-        <div style={{height:'430px'}}>
+        <div style={{height:'430px'}} class="fade-in">
           {coins &&
             <Chart data={coins} className="chartContainer" timeFrame={timeFrame}/>
             }

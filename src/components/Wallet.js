@@ -53,7 +53,7 @@ function truncateString(string, limit) {
         </div>
         <div className="col-6">
           <Button onClick={deleteCoin} style={{padding:'10px', marginTop:'20px', float:'right'}} variant="danger"><GoTrashcan style={{fontSize:"1.2em"}}/> Delete</Button>
-          <Button onClick={viewCoin} style={{padding:'10px', marginTop:'20px', float:'right'}} variant="danger"><FaRegEye style={{fontSize:"1.2em"}}/> View</Button>
+          <Button onClick={viewCoin} style={{padding:'10px', marginRight: '5px', marginTop:'20px', float:'right'}} variant="success"><FaRegEye style={{fontSize:"1.2em"}}/> View</Button>
         </div>
      </div>
  )

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {AreaChart,Area,XAxis,YAxis,CartesianGrid,Tooltip,Legend, ResponsiveContainer} from "recharts";
 import moment from 'moment'
 import numeral from 'numeral'
+import { contains } from "jquery";
 
 const data1 = [
   {
@@ -51,52 +52,70 @@ const data1 = [
 export default function PortfolioChart(props) {
 const [data, setData] = useState([])
 const [loading, setLoading] = useState(false)
+const [timeFrame, setTimeFrame] = useState('')
+const [fetchUrl, setFetchUrl] = useState([])
+
+useEffect(() => {
+// let fetchUrls = []
+// setTimeFrame(props.timeFrame)
+// console.log(timeFrame)
+// for (let x = 0; x < props.data.length; x++){
+//   if(timeFrame === undefined || timeFrame === null || timeFrame === ''){
+//   fetchUrls.push({url: "https://coinranking1.p.rapidapi.com/coin/"+props.data.[x].id+"/history/7d"})
+//   }else{
+//     fetchUrls.push({url: "https://coinranking1.p.rapidapi.com/coin/"+props.data.[x].id+"/history/" + props.timeFrame})
+//   }
+// }
+//   setFetchUrl(fetchUrls)
+//   console.log(fetchUrls)
+setData([])
+setTimeFrame(props.timeFrame)
+getHis()
+
+}, [props.timeFrame]);
+
+function getHis(){
+  for (let i = 0; i < props.data.length; i++){
+    fetch("https://coinranking1.p.rapidapi.com/coin/"+props.data.[i].id+"/history/" + props.timeFrame, {
+"method": "GET",
+"headers": {
+  "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+  "x-rapidapi-host": "coinranking1.p.rapidapi.com"
+}
+}).then(response => {
+  if(response.ok){
+  response.json().then((json) => {
+    setData(data => [...data,
+      {
+        id: props.data.[i].id,
+        name: props.data.[i].name,
+        history: json.data.history,
+        color: props.data.[i].color
+      }
+    ])
+  })
+  }
+})
+  }
+}
 
 useEffect(() => {
   setLoading(true)
-  let historyArray = []
-    for (let i = 0; i < props.data.length; i++){
-      fetch("https://coinranking1.p.rapidapi.com/coin/"+props.data.[i].id+"/history/30d", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
-		"x-rapidapi-host": "coinranking1.p.rapidapi.com"
-	}
-  }).then(response => {
-    if(response.ok){
-    response.json().then((json) => {
-      setData(data => [...data,
-        {
-          id: props.data.[i].id,
-          name: props.data.[i].name,
-          history: json.data.history,
-          color: props.data.[i].color
-        }
-      ])
-    })
-    }
-  })
-    }
-  console.log(historyArray)
+  getHis()
+  console.log(data)
 }, [props.data]);
 
-// useEffect(() => {
-//   setData(props.data)
-//   setTimeout(() => {
-//     console.log(data)
-//   }, 1400);
-// }, [props.data]);
 
 const currencyFormatter = (item) => numeral(item).format('$0,0')
 
   return (
     <ResponsiveContainer width="100%" height="100%">
+      
     <AreaChart
-      data={data}
       margin={{
         top: 5,
-        right: 30,
-        left: 20,
+        right: 0,
+        left: -20,
         bottom: 5
       }}
     >
@@ -107,12 +126,7 @@ const currencyFormatter = (item) => numeral(item).format('$0,0')
       <Legend />
       {
       data.map((i) => {
-        return (<Area data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2} fillOpacity={0} fill={i.color}/>)
-      // if(i.color == null){
-      //   return (<Line data={i.history} dataKey="price" name={i.name} stroke="#14ce71" dot={false} strokeWidth={2}/>)
-      //   } else {
-      //     return (<Line data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2}/>)
-      //   }
+        return (<Area data={i.history} dataKey="price" name={i.name} stroke={i.color} dot={false} strokeWidth={2} fillOpacity={0} fill={i.color} isAnimationActive={true}/>)
       }
     )
   }
