@@ -71,10 +71,10 @@ useEffect(() => {
 setData([])
 setTimeFrame(props.timeFrame)
 getHis()
-
 }, [props.timeFrame]);
 
 function getHis(){
+  setLoading(true)
   for (let i = 0; i < props.data.length; i++){
     fetch("https://coinranking1.p.rapidapi.com/coin/"+props.data.[i].id+"/history/" + props.timeFrame, {
 "method": "GET",
@@ -97,17 +97,18 @@ function getHis(){
   }
 })
   }
+  setLoading(false)
 }
 
 useEffect(() => {
-  setLoading(true)
   getHis()
-  console.log(data)
 }, [props.data]);
 
 
 const currencyFormatter = (item) => numeral(item).format('$0,0')
-
+if (loading){
+  return <h1 className="text-center pt-5">Loading Chart..</h1>
+}
   return (
     <ResponsiveContainer width="100%" height="100%">
       
