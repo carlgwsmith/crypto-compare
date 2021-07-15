@@ -11,7 +11,6 @@ function Portfolio() {
   const { currentUser } = useAuth()
   const [activeIndex, setActiveIndex] = useState(0)
   const [timeFrame, setTimeFrame] = useState('7d')
-  // const [colors, setColors] = useState([])
 
   function changeTimeFrame(time, index){
     setTimeFrame(time)
@@ -46,9 +45,9 @@ useEffect(() => {
       <header className="App-header">
         <div className="row px-2 mx-1">
         <div className="col-sm-12 pt-3">
-        <h3>Portfolio</h3>
-        <p className="subtitle">Below is a chart of all of your coins and their pricing history.</p>
-        <span className="timeButtons">
+        <h3 style={{marginBottom:"0px", borderBottom: "2px solid #e3e3e3"}}>Portfolio</h3>
+        <p className="subtitle" style={{display:"inline-block", marginTop:"10px"}}>Below is a chart of all of your coins and their pricing history.</p>
+        <span className="timeButtons" style={{marginTop:"8px"}}>
             <button onClick={() => changeTimeFrame('7d', 0)} className={activeIndex === 0 ? "active timeBtn" : "timeBtn"}>7d</button>
             <button onClick={() => changeTimeFrame('30d', 1)} className={activeIndex === 1 ? "active timeBtn" : "timeBtn"}>30d</button>
             <button onClick={() => changeTimeFrame('1y', 2)} className={activeIndex === 2 ? "active timeBtn" : "timeBtn"}>1y</button>
@@ -61,7 +60,9 @@ useEffect(() => {
             }
         </div>
         </div>
-        <div className="col-sm-12">
+        <div className="col-sm-12 mb-4 pb-4">
+        <h3>Coins</h3>
+        <p className="subtitle">Below is a list of the coins in your portfolio.</p>
         {coins.map((coin, index) => (
         <div key={index}>
             <Wallet name={coin.name} color={coin.color} history={coin.history} id={coin.id} uuid={coin.uuid} price={coin.price} symbol={coin.symbol} />

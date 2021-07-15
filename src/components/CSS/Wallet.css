@@ -2,6 +2,42 @@
 	-webkit-animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 	        animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
+span.name{
+  text-align: left;
+  padding: 0px 0px 0px 12px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 0;
+  font-weight: 300;
+  font-family: 'Questrial', sans-serif;
+  color: rgb(152, 152, 152);
+  padding-left:4px;
+  border-left: 1px solid #c7c7c7;
+}
+.coinRowTop{
+  font-family: 'Questrial', sans-serif;
+  font-size:12px;
+  margin-bottom:0px;
+  margin-top:10px;
+  margin-left:14px;
+}
+.viewBtn{
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-weight: 400;
+  font-family: 'Questrial', sans-serif;
+  font-size: 15px;
+  margin: -0px 5px 15px 0px;
+  background-color:rgb(19, 194, 98); 
+}
+.delBtn{
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-weight: 400;
+  font-family: 'Questrial', sans-serif;
+  font-size: 15px;
+  margin: 0px 0px 15px 0px ;
+}
 @-webkit-keyframes slide-out-top {
     0% {
       -webkit-transform: translateY(0);
