@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color:#f6fdff !important;
 }
 html,body
 {
@@ -13,6 +14,18 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
+}
+.heroSection{
+  padding-top:100px;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+.heroh1{
+    font-size: 6em;
+    margin: 0px;
+    line-height: .8;
+    color: #435e68 !important;
+    text-shadow:2px 2px 5px white;
 }
 .subtitle{
   font-size:1rem;

@@ -61,9 +61,14 @@ useEffect(() => {
   });
   }, []);
 
+  // function keySelection(e){
+  //   if(e.key === 'Enter') {
+  //     window.open(result.path)
+  // }
+  // }
+
 return(
   <>
-  <h2 className="text-center">Search for a coin</h2>
   <inputGroup>
   <Typeahead
     id="open-window"
@@ -75,6 +80,7 @@ return(
           <MenuItem
             key={idx}
             onClick={() => window.open(result.path)}
+            onKeyUp={() => window.open(result.path)}
             option={result}
             position={idx}>
             <Highlighter search={props.text}>{result.label}</Highlighter>

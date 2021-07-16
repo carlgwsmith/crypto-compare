@@ -1,11 +1,18 @@
 //import {useState, useEffect} from "react"
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import { MdTrendingDown, MdTrendingUp } from "react-icons/md";
+import {useHistory} from 'react-router-dom';
 
 import '../components/CSS/Movers.css';
 
 function Movers (props) {
 //const [cryptoName, setCryptoName] = useState("")
+const history = useHistory();
+
+const viewCoin = () =>{
+  let path = '/coin/' + props.name +'/' + props.id;
+  history.push(path)
+}
 
 function truncateString(string, limit) {
     if (string.length > limit) {
@@ -16,7 +23,7 @@ function truncateString(string, limit) {
   }
 
  return (
-     <div className="box row">
+     <div className="box row" onClick={viewCoin}>
          <div className="col-7">
          <p className="symbol">{props.symbol}</p>
          <p className="name">{truncateString(props.name, 10)}</p>

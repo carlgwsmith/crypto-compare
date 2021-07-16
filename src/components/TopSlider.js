@@ -9,6 +9,7 @@ export default function TopSlider () {
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+
   useEffect(() => {
 fetch("https://coinranking1.p.rapidapi.com/coins?orderBy=change", {
 	"method": "GET",
@@ -20,7 +21,7 @@ fetch("https://coinranking1.p.rapidapi.com/coins?orderBy=change", {
 .then(response => {
   if(response.ok){
     response.json().then((json) => {
-      //console.log(json.data.coins)
+      console.log(json.data.coins)
       setCoins(json.data.coins)
       setIsLoading(false);
     })
@@ -35,9 +36,11 @@ fetch("https://coinranking1.p.rapidapi.com/coins?orderBy=change", {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 1000,
+    autoplay: true,
+    autoplaySpeed: 4000,
     slidesToShow: 6,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     centerPadding: 10,
     initialSlide: 0,
     responsive: [
@@ -86,15 +89,17 @@ fetch("https://coinranking1.p.rapidapi.com/coins?orderBy=change", {
       }
     ]
   };
+  if(isLoading){
+    return (<p className="text-center mt-5">Loading Coins...</p>)
+  }
   return (
-    <div style={{padding:"0px 10px"}}>
+    <div>
       <p className="moversTitle">🔥 Today's Top Movers 🔥</p>
       <Slider {...settings}>
-      {isLoading && <p>Loading Coins</p>}
             {coins.length !== 6}
             {coins.slice(0,20).map((coin, index) => (
               <div key={index}>
-                <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history}/>
+                <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history} id={coin.id}/>
               </div>
             ))}
       </Slider>

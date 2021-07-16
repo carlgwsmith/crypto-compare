@@ -45,9 +45,9 @@ function CustomNav(){
 
   return(
     <>
-<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+<Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Navbar.Brand href="/">
-        Crypto <strong>Compare</strong>
+        Crypto<strong>Compare</strong>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -62,8 +62,8 @@ function CustomNav(){
           }
           { currentUser &&
           <>
-          <Nav.Link href="/Dashboard"><BsHouse/> Home</Nav.Link>
-          <Nav.Link href="/Portfolio"><BsWallet/> Portfolio</Nav.Link>
+          <Nav.Link href="/Dashboard"><BsHouse style={{marginTop: "-6px"}}/> Home</Nav.Link>
+          <Nav.Link href="/Portfolio"><BsWallet style={{marginTop: "-6px"}}/> Portfolio</Nav.Link>
           <Dropdown alignRight>
             <Dropdown.Toggle id="dropdown-basic" as="p">
               {/* {error && <Alert variant="danger">{error}</Alert>} */}

@@ -183,7 +183,7 @@ const CoinOverview = (props) => {
 
 
     if(loading){
-        return <h1>loading...</h1>;      
+        return <h1 className="text-center mt-5">loading coin details...</h1>;      
     }
     return (
         <div>

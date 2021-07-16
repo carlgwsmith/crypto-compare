@@ -45,7 +45,8 @@ export default function Signup(){
         <div>
         <Card>
             <Card.Body>
-                <h2 className="text-center mb-4">Sign Up</h2>
+                <h3 className="text-center mb-0">Join <span style={{fontWeight: "300"}}>Crypto</span>Compare Today</h3>
+                <p className="suSubtitle text-center">Make your own portfolio and analyze coin performance</p>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id="email">
@@ -74,7 +75,7 @@ export default function Signup(){
                         </InputGroup.Append>
                         </InputGroup>
                     </Form.Group>
-                    <Button disabled={loading} type="submit" className="w-100">Sign Up</Button>
+                    <Button disabled={loading} type="submit" className="w-100 signupbtn">Sign Up</Button>
                 </Form>
             </Card.Body>
         </Card>
