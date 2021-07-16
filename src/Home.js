@@ -19,7 +19,7 @@ function Home() {
           <h1 className="heroh1">Compare</h1>
           </div>
         </div>
-        <div className="col-sm-6 pt-4">
+        <div className="col-sm-6 pt-5">
               <Signup/>
           </div>
           {/* <div className="col-sm-12 p-3">
