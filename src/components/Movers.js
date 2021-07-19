@@ -26,7 +26,7 @@ function truncateString(string, limit) {
      <div className="box row" onClick={viewCoin}>
          <div className="col-7">
          <p className="symbol">{props.symbol}</p>
-         <p className="name">{truncateString(props.name, 10)}</p>
+         <p className="name">{truncateString(props.name, 8)}</p>
          <p className="price">${parseFloat(props.price).toFixed(2)}</p>
         </div>
         <div className="col-5" style={{margin: "10px 0px", borderLeft: "1px solid #eaecfb", textAlign: "center"}}>

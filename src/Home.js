@@ -1,11 +1,12 @@
+import React, {useState} from "react"
 import Signup from './components/Signup'
 import TopSlider from './components/TopSlider'
-import CoinSearch from './components/CoinSearch'
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Home() {
+  
   return (
     <div className="Dashboard">
         <div className="row pt-2 px-4 pb-5">
@@ -16,10 +17,10 @@ function Home() {
           <div className="heroInner">
           <h1 className="heroh1">Analyze.</h1>
           <h1 className="heroh1">Save.</h1>
-          <h1 className="heroh1">Compare</h1>
+          <h1 className="heroh1">Compare.</h1>
           </div>
         </div>
-        <div className="col-sm-6 pt-5">
+        <div className="col-sm-6 pt-3">
               <Signup/>
           </div>
           {/* <div className="col-sm-12 p-3">

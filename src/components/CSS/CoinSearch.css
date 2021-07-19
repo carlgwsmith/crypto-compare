@@ -8,9 +8,25 @@ input.rbt-input-main.form-control.rbt-input {
     margin-right: .5em;
 }
 .signupbtn{
-    background-color: #28c1ff !important;
     font-family: 'Monserrat', sans-serif;
     font-weight: 400 !important;
     font-size: 22px !important;
     letter-spacing: 2px;
+    border-radius: 40px !important;
+    border: 2px solid #00adff !important;
+    background-color: white !important;
+    color: #00adff !important;
+}
+.signupbtn:hover{
+    font-family: 'Monserrat', sans-serif;
+    font-weight: 400 !important;
+    font-size: 22px !important;
+    letter-spacing: 2px;
+    border-radius: 40px !important;
+    border: 2px solid #00adff !important;
+    background-color: #00adff !important;
+    color: white !important;
+}
+.card{
+    border: 1px solid #eaecfb !important;
 }

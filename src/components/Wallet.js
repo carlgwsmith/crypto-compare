@@ -16,11 +16,6 @@ const Wallet = (props) => {
     const [active, setActive] = useState(false)
     const history = useHistory();
 
-
-    if(loading){
-        return <h1>loading...</h1>;      
-    }
-
 function truncateString(string, limit) {
     if (string.length > limit) {
       return string.substring(0, limit) + "..."
@@ -35,6 +30,7 @@ function truncateString(string, limit) {
   }
 
   function deleteCoin(){
+    setLoading(true)
     const coin = {
       id: props.id,
       uuid: props.uuid,
@@ -46,6 +42,18 @@ function truncateString(string, limit) {
     }
     console.log(coin)
     database.users.doc(currentUser.uid).update({coins: firebase.firestore.FieldValue.arrayRemove(coin)});
+    setLoading(false)
+}
+
+useEffect(() => {
+  if(props){
+    setLoading(false)
+  }
+  
+}, [props]);
+
+if(loading){
+  return <h1>loading...</h1>;      
 }
  return (
      <div className={active ? 'slide-out-top box row' : 'box row'} style={{marginLeft:"0px", marginRight:"0px"}}>

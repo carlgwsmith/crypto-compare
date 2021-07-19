@@ -78,6 +78,12 @@ input.passwordField.form-control {
 .form-control{
   font-family: 'Questrial', sans-serif;
 }
+.user{
+  color:#00adff;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 .moversTitle{
   margin-top: 10px;
   font-family: 'Questrial', sans-serif;

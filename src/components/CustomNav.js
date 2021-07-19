@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import { Nav, Navbar, Modal, Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import {FiLogOut, FiLogIn} from 'react-icons/fi'
+import {BiCaretDown} from 'react-icons/bi'
 import {BsHouse, BsWallet} from 'react-icons/bs'
 import {CgProfile} from 'react-icons/cg'
 import {FaCog} from 'react-icons/fa'
@@ -68,7 +69,7 @@ function CustomNav(){
             <Dropdown.Toggle id="dropdown-basic" as="p">
               {/* {error && <Alert variant="danger">{error}</Alert>} */}
                {/* <img src={`${process.env.PUBLIC_URL}/Assets/carl.jpg`} className="profilepic" alt="user"></img> */}
-               <CgProfile/> {userName}
+               <CgProfile style={{marginTop: "-6px"}}/> {userName} <BiCaretDown style={{marginTop: "-6px"}}/>
             </Dropdown.Toggle>
             <Dropdown.Menu >
               <Dropdown.Item href="#">Profile <CgProfile className="ddicon"/></Dropdown.Item>

@@ -49,11 +49,11 @@ export default function Signup(){
                 <p className="suSubtitle text-center">Make your own portfolio and analyze coin performance</p>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group id="email">
+                    <Form.Group id="email" className="p-2">
                         <Form.Label>Email Address</Form.Label>
                         <Form.Control type="email" ref={emailRef} placeholder="Enter Your Email Address" required />
                     </Form.Group>
-                    <Form.Group id="password">
+                    <Form.Group id="password" className="p-2">
                     <Form.Label>Password</Form.Label>
                         <InputGroup>
                         <Form.Control type={passwordShown ? "text" : "password"} ref={passwordRef} className="passwordField" placeholder="Enter Your Password" required />
@@ -64,7 +64,7 @@ export default function Signup(){
                         </InputGroup.Append>
                         </InputGroup>
                     </Form.Group>
-                    <Form.Group id="password-confirm">
+                    <Form.Group id="password-confirm" className="p-2">
                         <Form.Label>Password Confirmation</Form.Label>
                         <InputGroup>
                         <Form.Control type={passwordShown ? "text" : "password"} ref={passwordConfirmRef} className="passwordField" placeholder="Confirm Your Password" required />
@@ -75,7 +75,7 @@ export default function Signup(){
                         </InputGroup.Append>
                         </InputGroup>
                     </Form.Group>
-                    <Button disabled={loading} type="submit" className="w-100 signupbtn">Sign Up</Button>
+                    <Button disabled={loading} type="submit" className="w-100 signupbtn py-2 my-2" variant="outline-info">Sign Up To Join</Button>
                 </Form>
             </Card.Body>
         </Card>
