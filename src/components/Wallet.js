@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-import {Card, Alert, Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import {database} from "../firebase"
 import firebase from 'firebase/app'
 import {FaRegEye} from "react-icons/fa"
@@ -53,7 +53,10 @@ useEffect(() => {
 }, [props]);
 
 if(loading){
-  return <h1>loading...</h1>;      
+  return <h1 className="text-center pt-4">loading...</h1>;      
+}
+if(error){
+  return <h1 className="text-center pt-4">No Coins, please add a coin to view your portfolio.</h1>
 }
  return (
      <div className={active ? 'slide-out-top box row' : 'box row'} style={{marginLeft:"0px", marginRight:"0px"}}>

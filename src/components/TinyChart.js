@@ -30,7 +30,7 @@ function TinyChart (props) {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="3 3" verticalFill={['#f6f8ff', '#eef1f7']}/>
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor={coinColor} stopOpacity={0.8}/>

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import CoinSearch from './components/CoinSearch'
 import Banner from './components/Banner'
+import PortfolioNews from './components/PortfolioNews'
 import TopSlider from './components/TopSlider'
 import { useAuth } from "./Context/AuthContext"
 import {database} from "./firebase"
@@ -12,7 +13,10 @@ function Dashboard() {
   const [coins, setCoins] = useState([])
   const { currentUser } = useAuth()
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   let userName = ''
+
+
 
 
   useEffect(() => {
@@ -52,11 +56,16 @@ function Dashboard() {
         <div className="row p-3">
           <div className="col-sm-12 mb-3"><TopSlider/></div>
           <div className="col-sm-12 pl-4">
-            <h2>Welcome back, <span className="user">{userName}</span></h2>
-            <p>you are currently researching {coins.length} coins.</p>
+            <h2 className="pb-0 mb-1">Welcome back, <span className="user">{userName}</span></h2>
+            <p className="subtitle mt-1">let's research some cypto.</p>
           </div>
           <div className="col-sm-12 mb-3"><CoinSearch/></div>
-          <div className="col-sm-6"><Banner /></div>
+        </div>
+        <div className="row p-3">
+          <div className="col-sm-12 pl-4">
+          <h2>Latest Crypto News</h2>
+          </div>
+          <PortfolioNews/>
         </div>
     </div>
   );

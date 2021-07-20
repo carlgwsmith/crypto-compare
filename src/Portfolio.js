@@ -37,9 +37,12 @@ useEffect(() => {
   console.log(coins)
 }, []);
 
-  if(loading || !coins){
-        return <h1>loading...</h1>;      
+  if(loading){
+        return <h1 className="text-center pt-4">loading...</h1>;      
     }
+  if(!coins){
+      return <h1 className="text-center pt-4">No Coins, please add a coin to view your portfolio.</h1>
+  }
   return (
     <div className="Results">
       <header className="App-header">

@@ -52,7 +52,7 @@ useEffect(() => {
       response.json().then((json) => {
           setCoins(json.data.coins)
           setLoading(false);
-          console.log(coins)
+          //console.log(coins)
       })
       }
   })
@@ -61,11 +61,11 @@ useEffect(() => {
   });
   }, []);
 
-  // function keySelection(e){
-  //   if(e.key === 'Enter') {
-  //     window.open(result.path)
-  // }
-  // }
+  function viewCoin(e, path){
+    if(e.charCode === 13) {
+      window.open(path)
+  }
+  }
 
 return(
   <>
@@ -80,7 +80,7 @@ return(
           <MenuItem
             key={idx}
             onClick={() => window.open(result.path)}
-            onKeyUp={() => window.open(result.path)}
+            selected={(e) => console.log(e)}
             option={result}
             position={idx}>
             <Highlighter search={props.text}>{result.label}</Highlighter>

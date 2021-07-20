@@ -25,7 +25,7 @@ function truncateString(string, limit) {
  return (
      <div className="box row" onClick={viewCoin}>
          <div className="col-7">
-         <p className="symbol">{props.symbol}</p>
+         <p className="symbol"><span><img src={props.icon} height="13px" style={{marginTop:"-2px", display:"inline-block", paddingRight:"5px", borderRight:"1px solid #f4f4f4"}}></img></span>{props.symbol}</p>
          <p className="name">{truncateString(props.name, 8)}</p>
          <p className="price">${parseFloat(props.price).toFixed(2)}</p>
         </div>

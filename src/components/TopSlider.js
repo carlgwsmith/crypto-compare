@@ -99,7 +99,7 @@ fetch("https://coinranking1.p.rapidapi.com/coins?orderBy=change", {
             {coins.length !== 6}
             {coins.slice(0,20).map((coin, index) => (
               <div key={index}>
-                <Movers symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history} id={coin.id}/>
+                <Movers icon={coin.iconUrl} symbol={coin.symbol} price={coin.price} name={coin.name} change={coin.change} history={coin.history} id={coin.id}/>
               </div>
             ))}
       </Slider>
