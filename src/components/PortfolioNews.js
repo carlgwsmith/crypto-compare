@@ -23,7 +23,6 @@ useEffect(() => {
       response.json().then((json) => {
         let articleArr = []
         for(let i = 0; i < json.articles.length; i++){
-          console.log(json.articles[i])
           if(json.articles[i].author != null && json.articles[i].media){
             articleArr.push(json.articles[i])
           }else {

@@ -21,7 +21,7 @@ fetch("https://coinranking1.p.rapidapi.com/coins?orderBy=change", {
 .then(response => {
   if(response.ok){
     response.json().then((json) => {
-      console.log(json.data.coins)
+     // console.log(json.data.coins)
       setCoins(json.data.coins)
       setIsLoading(false);
     })

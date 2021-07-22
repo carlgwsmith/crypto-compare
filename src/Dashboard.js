@@ -5,6 +5,7 @@ import PortfolioNews from './components/PortfolioNews'
 import TopSlider from './components/TopSlider'
 import { useAuth } from "./Context/AuthContext"
 import {database} from "./firebase"
+import MarketDetailTable from "./components/MarketDetailTable"
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -54,15 +55,21 @@ function Dashboard() {
       {/* <div className="row topCryptos">
       </div> */}
         <div className="row p-3">
-          <div className="col-sm-12 mb-3"><TopSlider/></div>
-          <div className="col-sm-12 pl-4">
+        <div className="col-sm-12 p-0 mx-4 mb-0 mt-2">
             <h2 className="pb-0 mb-1">Welcome back, <span className="user">{userName}</span></h2>
-            <p className="subtitle mt-1">let's research some cypto.</p>
+            <p className="subtitle mt-1 mb-0" style={{marginRight:"2.2rem;"}}>let's research some cypto.</p>
           </div>
-          <div className="col-sm-12 mb-3"><CoinSearch/></div>
+          <div className="col-sm-12 mb-1 mt-3"><CoinSearch/></div>
+          <div className="col-sm-12 mb-3"><TopSlider/></div>
         </div>
-        <div className="row p-3">
-          <div className="col-sm-12 pl-4">
+        <div className="row p-3 mx-1">
+          <div className="col-sm-12 mx-">
+          <h2>Latest Market Details</h2>
+          </div>
+          <MarketDetailTable/>
+        </div>
+        <div className="row p-3 mx-1">
+          <div className="col-sm-12 mx-">
           <h2>Latest Crypto News</h2>
           </div>
           <PortfolioNews/>
