@@ -60,17 +60,17 @@ function Dashboard() {
             <p className="subtitle mt-1 mb-0" style={{marginRight:"2.2rem;"}}>let's research some cypto.</p>
           </div>
           <div className="col-sm-12 mb-1 mt-3"><CoinSearch/></div>
-          <div className="col-sm-12 mb-3"><TopSlider/></div>
+          <div className="col-sm-12 mb-2"><TopSlider/></div>
         </div>
-        <div className="row p-3 mx-1">
-          <div className="col-sm-12 mx-">
-          <h2>Latest Market Details</h2>
+        <div className="row px-3 mx-1">
+          <div className="col-sm-12 mx-0">
+          <h4>Latest Market Details</h4>
           </div>
           <MarketDetailTable/>
         </div>
         <div className="row p-3 mx-1">
-          <div className="col-sm-12 mx-">
-          <h2>Latest Crypto News</h2>
+          <div className="col-sm-12 mx-0">
+          <h4>Latest Crypto News</h4>
           </div>
           <PortfolioNews/>
         </div>
