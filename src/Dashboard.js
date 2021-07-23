@@ -63,7 +63,7 @@ function Dashboard() {
           <div className="col-sm-12 mb-2"><TopSlider/></div>
         </div>
         <div className="row px-3 mx-1">
-          <div className="col-sm-12 mx-0">
+          <div className="col-sm-6 mx-0">
           <h4>Latest Market Details</h4>
           </div>
           <MarketDetailTable/>

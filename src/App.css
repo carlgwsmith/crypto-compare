@@ -78,6 +78,10 @@ input.passwordField.form-control {
 .form-control{
   font-family: 'Questrial', sans-serif;
 }
+.pagination{
+  float: right;
+  padding-right: 10px;
+}
 .user{
   color:#00adff;
 }

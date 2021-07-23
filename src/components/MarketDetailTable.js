@@ -22,9 +22,16 @@ useEffect(() => {
 .then(response => {
 	if(response.ok){
     response.json().then((json) => {
-      //setData(json.data)
-      console.log(json.data.markets)
       setData(json.data.markets)
+      console.log(json.data.markets)
+      // let dataArr = []
+      // for(let i=0; i<json.data.markets.length; i++){
+      //   dataArr.push({
+      //     symbol: '<img src="'+json.data.markets[i].sourceIconUrl+'"></img>"',
+      //     name: json.data.markets[i].sourceName
+      //   })
+      // }
+      // console.log(dataArr)
       // const DataArr = []
       // const totalMarketCap = Object.entries(json.data.total_market_cap)
       // const totalVolume = Object.entries(json.data.total_volume)
@@ -36,6 +43,7 @@ useEffect(() => {
       //   })
       // }
       // setData(DataArr)
+      //setData(dataArr)
     })
     }
 })
@@ -44,15 +52,35 @@ useEffect(() => {
 });
 }, []);
 
+function imageFormatter(cell, row){
+  return (<span><img src={row.sourceIconUrl} width="25px" style={{paddingRight:"10px"}}alt="market logo"/>{row.sourceName}</span>) ;
+}
+
+function twoDeci(cell, row){
+  return(Number(cell).toFixed(2))
+}
+function twoDeciDollar(cell, row){
+  return('$' + Number(cell).toFixed(2))
+}
+
 const columns = [
   {
-    dataField: "sourceName",
-    text: "Coin Symbol",
-    sort: true
+    text: "Market Name",
+    dataField:"sourceIconUrl",
+    width:"40",
+    sort: false,
+    formatter: imageFormatter
+  },
+  {
+    text: "Market Symbol",
+    dataField:"baseSymbol",
+    width:"40",
+    sort: false,
   },
   {
     dataField: "marketShare",
     text: "Market Share",
+    formatter:twoDeci,
     sort: true
   },
   {
@@ -63,6 +91,7 @@ const columns = [
   {
     dataField: "volume",
     text: "Total Volume",
+    formatter:twoDeciDollar,
     sort: true
   }
 ];
