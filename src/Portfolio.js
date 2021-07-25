@@ -45,9 +45,8 @@ useEffect(() => {
   }
   return (
     <div className="Results">
-      <header className="App-header">
         <div className="row px-2 mx-1">
-        <div className="col-sm-12 pt-3">
+        <div className="col-sm-12 col-md-8 pt-3">
         <h3 style={{marginBottom:"0px", borderBottom: "2px solid #e3e3e3"}}>Portfolio</h3>
         <p className="subtitle" style={{display:"inline-block", marginTop:"10px"}}>Below is a chart of all of your coins and their pricing history.</p>
         <span className="timeButtons" style={{marginTop:"8px"}}>
@@ -55,16 +54,21 @@ useEffect(() => {
             <button onClick={() => changeTimeFrame('30d', 1)} className={activeIndex === 1 ? "active timeBtn" : "timeBtn"}>30d</button>
             <button onClick={() => changeTimeFrame('1y', 2)} className={activeIndex === 2 ? "active timeBtn" : "timeBtn"}>1y</button>
         </span>
-        </div>
-        <div className="col-sm-12">
         <div style={{height:'430px'}} class="fade-in">
           {coins &&
             <Chart data={coins} className="chartContainer" timeFrame={timeFrame}/>
             }
         </div>
         </div>
-        <div className="col-sm-12 mb-4 pb-4">
-        <h3>Coins</h3>
+        {/* <div className="col-sm-8">
+        <div style={{height:'430px'}} class="fade-in">
+          {coins &&
+            <Chart data={coins} className="chartContainer" timeFrame={timeFrame}/>
+            }
+        </div>
+        </div> */}
+        <div className="col-sm-12 col-md-4 mb-4 pb-4 pt-3">
+        <h3 style={{borderBottom: "2px solid #e3e3e3"}}>Coins</h3>
         <p className="subtitle">Below is a list of the coins in your portfolio.</p>
         {coins.map((coin, index) => (
         <div key={index}>
@@ -73,7 +77,6 @@ useEffect(() => {
         ))}
         </div>
         </div>
-      </header>
     </div>
   );
 }
