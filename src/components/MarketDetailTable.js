@@ -53,17 +53,22 @@ useEffect(() => {
 }, []);
 
 function imageFormatter(cell, row){
-  return (<span><img src={row.sourceIconUrl} width="25px" style={{paddingRight:"10px"}}alt="market logo"/>{row.sourceName}</span>) ;
+  return (<span><img src={row.sourceIconUrl} width="25px" style={{paddingRight:"10px"}}alt="market logo"/>{row.sourceName} ({row.baseSymbol})</span>) ;
 }
 
 function twoDeci(cell, row){
-  return(Number(cell).toFixed(2))
+  return(Number(cell).toFixed(2) + "%")
 }
 function twoDeciDollar(cell, row){
   return('$' + Number(cell).toFixed(2))
 }
 
 const columns = [
+  {
+    dataField: "rank",
+    text: "Market Rank",
+    sort: true
+  },
   {
     text: "Market Name",
     dataField:"sourceIconUrl",
@@ -72,20 +77,9 @@ const columns = [
     formatter: imageFormatter
   },
   {
-    text: "Market Symbol",
-    dataField:"baseSymbol",
-    width:"40",
-    sort: false,
-  },
-  {
     dataField: "marketShare",
     text: "Market Share",
     formatter:twoDeci,
-    sort: true
-  },
-  {
-    dataField: "rank",
-    text: "Market Rank",
     sort: true
   },
   {

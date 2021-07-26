@@ -25,6 +25,7 @@ useEffect(() => {
         for(let i = 0; i < json.articles.length; i++){
           if(json.articles[i].author != null && json.articles[i].media){
             articleArr.push(json.articles[i])
+            console.log(json.articles[i])
           }else {
             console.log('skipped')
           }
@@ -54,15 +55,23 @@ if(loading){
 }
   return (
     <>
+    <h3 style={{paddingLeft:"10px"}}>Latest Crypto News</h3>
       {news.slice(0,3).map((article, index) => (
-              <div key={index} className="col-sm-4">
+              <div key={index} className="row">
+                <div className="col-sm-4">
+                <a href={article.link}>
+                <img style={{backgroundImage: "url('"+article.media +"')"}} className="articleImagePort"></img>
+                </a>
+                </div>
+                <div className="col-sm-8">
                 <div className="news">
                 <a href={article.link}>
-                  <img style={{backgroundImage: "url('"+article.media +"')"}} className="articleImage"></img>
-                  <p className="newsHeadline">{truncateString(article.title, 40)}</p>
+                  <p className="newsHeadline">{truncateString(article.title, 60)}</p>
                   <p className="via">{truncateString(article.author,30)} | {article.clean_url}</p>
                 </a>
                </div>
+                <p className="newsSummary">{truncateString(article.summary,150)}</p>
+                </div>
               </div>
             ))}
     </>

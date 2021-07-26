@@ -3,7 +3,7 @@
     height:400px;
 }
 .statsTable{
-   border: 2px solid #eaecfb;
+    background-color: white;
    border-radius:5px;
 }
 table{
@@ -12,8 +12,19 @@ table{
     color: #585858 !important;
     margin-bottom:0px;
 }
+table.table.table-striped.table-bordered {
+    margin-bottom: 0px !important;
+}
+.row.react-bootstrap-table-pagination {
+    padding-top: 15px;
+    padding-left: 10px;
+    background-color: #f6f8ff !important;
+}
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #f8f9fd !important;
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #ffffff !important;
 }
 th{
     font-weight:600;
@@ -146,6 +157,15 @@ span.recharts-legend-item-text {
 }
 .articleImage{
     height:150px;
+    width:100%;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #eaecfb;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+.articleImagePort{
+    height:115px;
     width:100%;
     background-size: cover;
     background-position: center;

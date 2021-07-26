@@ -94,7 +94,7 @@ fetch("https://coinranking1.p.rapidapi.com/coins?orderBy=change", {
   }
   return (
     <div>
-      <p className="moversTitle">🔥 Today's Top Movers 🔥</p>
+      {/* <p className="moversTitle">🔥 Today's Top Movers 🔥</p> */}
       <Slider {...settings}>
             {coins.length !== 6}
             {coins.slice(0,20).map((coin, index) => (
