@@ -106,7 +106,9 @@ const CoinOverview = (props) => {
      }
 
     useEffect(() => {
+        if(currentUser){
         getCoins()
+    }
     }, []);
 
     useEffect(() => {
@@ -160,26 +162,6 @@ const CoinOverview = (props) => {
         console.error(err);
     });
     }, []);
-
-    // useEffect(() => {
-    //     fetch("https://api.coinranking.com/v2/coin/"+coin.uuid+"/supply", {
-    //         crossDomain:true,
-    //         "method": "GET",
-    //         "headers": {
-    //             "x-access-token": process.env.REACT_APP_COINRANKING_API_KEY,
-    //         }
-    //     })
-    //     .then(response => {
-    //         if(response.ok){
-    //         response.json().then((json) => {
-    //             console.log(json.data)
-    //         })
-    //         }
-    //     })
-    //     .catch(err => {
-    //         setError('No Coins Yet')
-    //     });
-    // }, []);
     
     useEffect(() => {
         fetch("https://coinranking1.p.rapidapi.com/coin/" + coinId + "/history/" + timeFrame, {
