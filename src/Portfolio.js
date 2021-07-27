@@ -10,8 +10,13 @@ function Portfolio() {
   const [loading, setLoading] = useState(false)
   const { currentUser } = useAuth()
   const [activeIndex, setActiveIndex] = useState(0)
+  const [coinIndex, setCoinIndex] = useState(null)
   const [timeFrame, setTimeFrame] = useState('7d')
   let userName = ''
+
+  const sendDataToParent = (coin) => {
+    setCoinIndex(coin);
+  };
 
   function changeTimeFrame(time, index){
     setTimeFrame(time)
@@ -35,7 +40,7 @@ useEffect(() => {
           console.log('first timer')
       }else{
           const dataArray = Object.entries(data);
-          console.log(dataArray)
+          //console.log(dataArray)
           setCoins(dataArray.[0].[1])
       }
   }
@@ -44,6 +49,20 @@ useEffect(() => {
   
   console.log(coins)
 }, []);
+
+useEffect(() => {
+  const coinToRemove = coinIndex
+  const coinCopy = Array.from(coins)
+  console.log(coinCopy)
+  console.log(coinToRemove)
+
+  var mod = coinCopy.filter(x => {
+    return x.id != coinToRemove
+  })
+
+  setCoins(mod)
+
+}, [coinIndex]);
 
   if(loading){
         return <h1 className="text-center pt-4">loading...</h1>;      
@@ -85,7 +104,7 @@ useEffect(() => {
         <p className="subtitle">Below is a list of the coins in your portfolio.</p>
         {coins.map((coin, index) => (
         <div key={index}>
-            <Wallet name={coin.name} color={coin.color} history={coin.history} id={coin.id} uuid={coin.uuid} price={coin.price} symbol={coin.symbol} />
+            <Wallet name={coin.name} color={coin.color} history={coin.history} id={coin.id} uuid={coin.uuid} price={coin.price} symbol={coin.symbol} sendDataToParent={sendDataToParent} />
         </div>
         ))}
         </div>

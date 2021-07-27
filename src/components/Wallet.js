@@ -43,6 +43,7 @@ function truncateString(string, limit) {
     console.log(coin)
     database.users.doc(currentUser.uid).update({coins: firebase.firestore.FieldValue.arrayRemove(coin)});
     setLoading(false)
+    props.sendDataToParent(coin.id);
 }
 
 useEffect(() => {

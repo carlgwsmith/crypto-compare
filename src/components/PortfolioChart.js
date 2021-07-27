@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {AreaChart,Area,XAxis,YAxis,CartesianGrid,Tooltip,Legend, ResponsiveContainer} from "recharts";
 import moment from 'moment'
 import numeral from 'numeral'
-import { contains } from "jquery";
 
 const data1 = [
   {
@@ -51,23 +50,13 @@ const data1 = [
 
 export default function PortfolioChart(props) {
 const [data, setData] = useState([])
+const [coins, setCoins] = useState({})
 const [loading, setLoading] = useState(false)
 const [timeFrame, setTimeFrame] = useState('')
 const [fetchUrl, setFetchUrl] = useState([])
 
 useEffect(() => {
-// let fetchUrls = []
-// setTimeFrame(props.timeFrame)
-// console.log(timeFrame)
-// for (let x = 0; x < props.data.length; x++){
-//   if(timeFrame === undefined || timeFrame === null || timeFrame === ''){
-//   fetchUrls.push({url: "https://coinranking1.p.rapidapi.com/coin/"+props.data.[x].id+"/history/7d"})
-//   }else{
-//     fetchUrls.push({url: "https://coinranking1.p.rapidapi.com/coin/"+props.data.[x].id+"/history/" + props.timeFrame})
-//   }
-// }
-//   setFetchUrl(fetchUrls)
-//   console.log(fetchUrls)
+
 setData([])
 setTimeFrame(props.timeFrame)
 getHis()
@@ -90,7 +79,7 @@ function getHis(){
         id: props.data.[i].id,
         name: props.data.[i].name,
         history: json.data.history,
-        color: props.data.[i].color
+        color:props.data.[i].color
       }
     ])
   })
@@ -101,7 +90,9 @@ function getHis(){
 }
 
 useEffect(() => {
-  getHis()
+  setData([])
+setTimeFrame(props.timeFrame)
+getHis()
 }, [props.data]);
 
 
