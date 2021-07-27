@@ -35,14 +35,30 @@ p#dropdown-basic {
     margin-right: 10px;
     padding-top: 6px;
     font-family: 'Questrial', sans-serif;
-    color: #14ce71;
+    color: #16a2ff;
 }
 .loginBtn{
     font-family: 'Questrial', sans-serif;
     font-size:18px;
     padding:2px 20px;
 }
-
+.loginCard{
+    border:0px !important;
+}
+.loginCardBody{
+    padding-top:0px !important;
+}
+.loginModal{
+    padding-top:0px !important;
+}
+.passwordReset{
+    font-weight:600;
+    font-size:.85rem;
+    padding-top:10px;
+}
+.passwordAppend{
+    padding: 0.35rem .75rem;
+}
 p#dropdown-basic::first-letter{
     text-transform: capitalize;
 }

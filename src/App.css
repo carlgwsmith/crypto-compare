@@ -82,8 +82,11 @@ input.passwordField.form-control {
   float: right;
   padding-right: 10px;
 }
+.react-bootstrap-table table {
+  table-layout: inherit !important;
+}
 .user{
-  color:#00adff;
+  color:#16a2ff;
 }
 .dropdown:hover .dropdown-menu {
   display: block;
@@ -99,6 +102,27 @@ input.passwordField.form-control {
   font-weight: 700;
   color: #e96a09;
 }
+.fade-out {
+	-webkit-animation: fade-out 1s ease-out both;
+	        animation: fade-out 1s ease-out both;
+}
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

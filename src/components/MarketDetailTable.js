@@ -66,7 +66,7 @@ function twoDeciDollar(cell, row){
 const columns = [
   {
     dataField: "rank",
-    text: "Market Rank",
+    text: "Rank",
     sort: true
   },
   {

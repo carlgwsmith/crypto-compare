@@ -30,6 +30,7 @@ function truncateString(string, limit) {
   }
 
   function deleteCoin(){
+    setActive(true)
     setLoading(true)
     const coin = {
       id: props.id,
@@ -49,6 +50,7 @@ function truncateString(string, limit) {
 useEffect(() => {
   if(props){
     setLoading(false)
+    console.log(props)
   }
   
 }, [props]);
@@ -60,16 +62,16 @@ if(error){
   return <h1 className="text-center pt-4">No Coins, please add a coin to view your portfolio.</h1>
 }
  return (
-     <div className={active ? 'slide-out-top box row' : 'box row'} style={{marginLeft:"0px", marginRight:"0px"}}>
-         <div className="col-sm-3">
+     <div className={active ? 'fade-out box row' : 'box row'} style={{marginLeft:"0px", marginRight:"0px"}}>
+         <div className="col-xs-12 col-md-3">
           <p className="coinRowTop">Name</p>
           <p className="symbol" style={{paddingTop:"0px", marginTop:"7px"}}>{props.name}</p>
         </div>
-        <div className="col-sm-3">
+        <div className="col-xs-12 col-md-3">
           <p className="coinRowTop">Price</p>
           <p className="price" style={{marginTop:"7px"}}>${parseFloat(props.price).toFixed(2)}</p>
         </div>
-        <div className="col-6">
+        <div className="col-xs-12 col-md-6">
         <p className="coinRowTop">Actions</p>
           <Button onClick={viewCoin} className="viewBtn" variant="success"><FaRegEye style={{fontSize:"1.2em"}}/> View</Button>
           <Button onClick={deleteCoin} className="delBtn" variant="danger"><GoTrashcan style={{fontSize:"1.2em"}}/> Delete</Button>

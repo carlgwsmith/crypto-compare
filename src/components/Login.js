@@ -1,11 +1,11 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {InputGroup, Form, Button, Card, Alert} from 'react-bootstrap'
 import { useAuth} from '../Context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import { BsEyeSlash } from "react-icons/bs";
 import {FaRegEye} from "react-icons/fa"
 
-export default function Login(){
+export default function Login(props){
     const emailRef = useRef()
     const passwordRef = useRef()
     const {login} = useAuth()
@@ -13,7 +13,9 @@ export default function Login(){
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [passwordShown, setPasswordShown] = useState(false);
+    const [passForgot, setPassForgot] = useState(false)
     const [open, setOpen] = useState(<BsEyeSlash size="1.3em"/>);
+
 
     const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? false : true);
@@ -37,11 +39,19 @@ export default function Login(){
         setLoading(false)
     }
 
+    function passForgotAction(){
+        setPassForgot(true)
+    }
+    useEffect(() => {
+        props.sendDataToParent(passForgot);
+    }, [passForgot]);
+
     return(
         <div>
-        <Card>
-            <Card.Body>
-                <h2 className="text-center mb-4">Login</h2>
+        <Card className="loginCard">
+            <Card.Body className="loginCardBody">
+                <h2 className="mb-0">Welcome Back</h2>
+                <p className="name mb-5" style={{padding:"10px 0px 0px 5px"}}>Input out your credentials to login.</p>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id="email">
@@ -55,20 +65,18 @@ export default function Login(){
                         <InputGroup>
                         <Form.Control type={passwordShown ? "text" : "password"} className="passwordField" ref={passwordRef} placeholder="Enter Your Password" required />
                         <InputGroup.Append>
-                            <InputGroup.Text id="inputGroupAppend">
+                            <InputGroup.Text id="inputGroupAppend" className="passwordAppend">
                             <span><i onClick={togglePasswordVisiblity}>{open}</i>{" "}</span>
                             </InputGroup.Text>
                         </InputGroup.Append>
                         </InputGroup>
+                        <p className="text-right passwordReset" onClick={passForgotAction}><Link>Forgot Password?</Link></p>
                     </Form.Group>
                     <Button disabled={loading} type="submit" className="w-100">Login</Button>
                 </Form>
-                <div className='w-100 text-center mt-3'>
-                    Need an account? <Link to="/forgot-password">Forgot Password?</Link>
-                </div>
             </Card.Body>
         </Card>
-        <div className='w-100 text-center mt-2'>
+        <div className='w-100 text-center mt-3 pb-3'>
                 Need an account? <Link to="/">Sign Up</Link>
             </div>
         </div>

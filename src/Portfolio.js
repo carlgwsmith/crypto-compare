@@ -88,7 +88,7 @@ useEffect(() => {
         </span>
         <div style={{height:'430px'}} class="fade-in">
           {coins &&
-            <Chart data={coins} className="chartContainer" timeFrame={timeFrame}/>
+            <Chart data={coins} className="chartContainer fade-in" timeFrame={timeFrame}/>
             }
         </div>
         </div>
@@ -104,7 +104,7 @@ useEffect(() => {
         <p className="subtitle">Below is a list of the coins in your portfolio.</p>
         {coins.map((coin, index) => (
         <div key={index}>
-            <Wallet name={coin.name} color={coin.color} history={coin.history} id={coin.id} uuid={coin.uuid} price={coin.price} symbol={coin.symbol} sendDataToParent={sendDataToParent} />
+            <Wallet name={coin.name} color={coin.color} history={coin.history} id={coin.id} uuid={coin.uuid} price={coin.price} symbol={coin.symbol} sendDataToParent={sendDataToParent}  />
         </div>
         ))}
         </div>

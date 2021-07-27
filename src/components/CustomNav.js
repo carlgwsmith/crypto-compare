@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { Nav, Navbar, Modal, Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import {FiLogOut, FiLogIn} from 'react-icons/fi'
@@ -10,10 +10,11 @@ import '../components/CSS/Nav.css'
 import { useAuth } from "../Context/AuthContext"
 import {useHistory} from "react-router-dom"
 import Login from '../components/Login'
+import ForgotPassword from './ForgotPassword'
 
 function CustomNav(){
   const [show, setShow] = useState(false);
-
+  const [forgot, setForgot] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -43,6 +44,20 @@ function CustomNav(){
     }
   }
 
+  const sendDataToParent = (remember) => {
+    setForgot(remember);
+  };
+
+  const sendDataToParent2 = (remember) => {
+    setForgot(remember);
+  };
+  
+  useEffect(() => {
+    const passwordStatus = forgot
+    setForgot(passwordStatus);
+    console.log(passwordStatus)
+    
+  }, [forgot]);
 
   return(
     <>
@@ -93,7 +108,14 @@ function CustomNav(){
     <Modal show={show} onHide={handleClose} size="md">
         <Modal.Header closeButton>
         </Modal.Header>
-        <Modal.Body><Login/></Modal.Body>
+        <Modal.Body className="loginModal">
+          {!forgot &&
+          <Login sendDataToParent={sendDataToParent}/>
+          }
+          {forgot &&
+          <ForgotPassword sendDataToParent2={sendDataToParent2}/> 
+          }
+          </Modal.Body>
       </Modal>
     </>
   )
