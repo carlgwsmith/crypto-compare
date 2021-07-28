@@ -24,26 +24,6 @@ useEffect(() => {
     response.json().then((json) => {
       setData(json.data.markets)
       console.log(json.data.markets)
-      // let dataArr = []
-      // for(let i=0; i<json.data.markets.length; i++){
-      //   dataArr.push({
-      //     symbol: '<img src="'+json.data.markets[i].sourceIconUrl+'"></img>"',
-      //     name: json.data.markets[i].sourceName
-      //   })
-      // }
-      // console.log(dataArr)
-      // const DataArr = []
-      // const totalMarketCap = Object.entries(json.data.total_market_cap)
-      // const totalVolume = Object.entries(json.data.total_volume)
-      // for (let i = 0;  i < 10; i++){
-      //   DataArr.push({
-      //     name: totalMarketCap.[i].[0],
-      //     marketcap: totalMarketCap.[i].[1],
-      //     volume: totalVolume.[i].[1]
-      //   })
-      // }
-      // setData(DataArr)
-      //setData(dataArr)
     })
     }
 })
@@ -67,24 +47,28 @@ const columns = [
   {
     dataField: "rank",
     text: "Rank",
-    sort: true
+    sort: true,
+    classes: 'rankCol'
   },
   {
     text: "Market Name",
     dataField:"sourceIconUrl",
     width:"40",
     sort: false,
+    classes: 'mktNameCol',
     formatter: imageFormatter
   },
   {
     dataField: "marketShare",
     text: "Market Share",
     formatter:twoDeci,
+    classes: 'mktShareCol',
     sort: true
   },
   {
     dataField: "volume",
     text: "Total Volume",
+    classes: 'mktVolCol',
     formatter:twoDeciDollar,
     sort: true
   }
@@ -102,6 +86,8 @@ return (
       <BootstrapTable 
       bootstrap4
       striped
+      bordered={false}
+      headerWrapperClasses="statsTableHead"
       keyField='id'
       data={ data }
       columns={ columns }

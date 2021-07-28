@@ -3,6 +3,7 @@ import { Nav, Navbar, Modal, Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import {FiLogOut, FiLogIn} from 'react-icons/fi'
 import {BiCaretDown} from 'react-icons/bi'
+import {RiScalesFill} from 'react-icons/ri'
 import {BsHouse, BsWallet} from 'react-icons/bs'
 import {CgProfile} from 'react-icons/cg'
 import {FaCog} from 'react-icons/fa'
@@ -64,7 +65,7 @@ function CustomNav(){
 <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
 { !currentUser && 
       <Navbar.Brand href="/">
-        Crypto<strong>Compare</strong>
+        <RiScalesFill/> Crypto<strong>Compare</strong>
       </Navbar.Brand>
 }
 { currentUser && 

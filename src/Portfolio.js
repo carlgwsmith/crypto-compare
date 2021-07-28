@@ -64,23 +64,24 @@ useEffect(() => {
 
 }, [coinIndex]);
 
+if(coins.length == 0){
+  return <h1 className="text-center pt-4">No Coins, please add a coin to view your portfolio.</h1>
+}
   if(loading){
         return <h1 className="text-center pt-4">loading...</h1>;      
     }
-  if(!coins){
-      return <h1 className="text-center pt-4">No Coins, please add a coin to view your portfolio.</h1>
-  }
   return (
     <div className="Results">
         <div className="row p-2 m-1">
-          <div className="col-sm-12">
-          <h1><span className="user" style={{textTransform:"capitalize"}}>{userName}'s</span> Portfolio</h1>
+          <div className="col-sm-12 p-0 mx-4 mb-3 mt-2" style={{borderBottom: "1px solid #eaecfb"}}>
+            <h2 className="pb-0 mb-1"><span className="user" style={{textTransform:"capitalize"}}>{userName}</span>'s Portfolio</h2>
+            <p className="subtitle mt-1 mb-0 pb-3" style={{marginRight:"2.2rem;"}}>let's compare the crypto you've selected.</p>
           </div>
         </div>
         <div className="row px-2 mx-1">
         <div className="col-sm-12 col-md-8">
-        <h3 style={{marginBottom:"0px", borderBottom: "2px solid #e3e3e3"}}>Pricing History</h3>
-        <p className="subtitle" style={{display:"inline-block", marginTop:"10px"}}>Below is a chart of all of your coins and their pricing history.</p>
+        <h3 style={{marginBottom:"0px", paddingLeft: "10px"}}>Pricing History</h3>
+        <p className="subtitle" style={{display:"inline-block", marginTop:"10px", paddingLeft: "10px"}}>Below is a chart of all of your coins and their pricing history.</p>
         <span className="timeButtons" style={{marginTop:"8px"}}>
             <button onClick={() => changeTimeFrame('7d', 0)} className={activeIndex === 0 ? "active timeBtn" : "timeBtn"}>7d</button>
             <button onClick={() => changeTimeFrame('30d', 1)} className={activeIndex === 1 ? "active timeBtn" : "timeBtn"}>30d</button>
@@ -100,7 +101,7 @@ useEffect(() => {
         </div>
         </div> */}
         <div className="col-sm-12 col-md-4 mb-4 pb-4">
-        <h3 style={{borderBottom: "2px solid #e3e3e3"}}>Coins</h3>
+        <h3 style={{paddingLeft: "10px", paddingLeft: "10px"}}>Coins</h3>
         <p className="subtitle">Below is a list of the coins in your portfolio.</p>
         {coins.map((coin, index) => (
         <div key={index}>

@@ -77,6 +77,15 @@ input.passwordField.form-control {
 }
 .form-control{
   font-family: 'Questrial', sans-serif;
+  border: 1px solid #eaecfb !important;
+}
+.page-link{
+  border: 1px solid #eaecfb !important;
+  color:#989898 !important;
+}
+.page-item.active .page-link{
+  color:#fff !important;
+  background-color: #16a2ff !important;
 }
 .pagination{
   float: right;
@@ -84,6 +93,22 @@ input.passwordField.form-control {
 }
 .react-bootstrap-table table {
   table-layout: inherit !important;
+}
+thead.statsTableHead > tr > th {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  color: #444444;
+  border-top:none !important;
+}
+.statsTable{
+  border:1px solid #eaecfb;
+  border-radius:15px;
+  background-color: white;
+}
+.table .statsTableHead th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #eaecfb !important;
 }
 .user{
   color:#16a2ff;
@@ -101,6 +126,27 @@ input.passwordField.form-control {
   padding: 5px 5px 5px 10px;
   font-weight: 700;
   color: #e96a09;
+}
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-family: 'Questrial', sans-serif;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #eaecfb;
+}
+
+.separator:not(:empty)::before {
+  margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: .25em;
 }
 .fade-out {
 	-webkit-animation: fade-out 1s ease-out both;

@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import ForgotPassword from './components/ForgotPassword'
+import UpdateProfile from './components/UpdateProfile'
 import firebase from './firebase'
-import AddCoins from './components/AddCoins'
-
+ 
 const Settings = () => {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
@@ -31,8 +30,11 @@ const Settings = () => {
 
     return (
         <div>
-            <h1>Settings</h1>
-            <ForgotPassword/>
+            <div className="row pt-4">
+                <div className="col-sm-6 offset-3">
+                <UpdateProfile/>
+                </div>
+            </div>
         </div>
     );
 }

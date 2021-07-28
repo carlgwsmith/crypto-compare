@@ -55,11 +55,11 @@ function Dashboard() {
       {/* <div className="row topCryptos">
       </div> */}
         <div className="row p-3">
-        <div className="col-sm-12 mb-2"><TopSlider/></div>
-        <div className="col-sm-12 p-0 mx-4 mb-0 mt-2">
+        <div className="col-sm-12 p-0 mx-4 mb-3 mt-2" style={{borderBottom: "1px solid #eaecfb"}}>
             <h2 className="pb-0 mb-1">Welcome back, <span className="user" style={{textTransform:"capitalize"}}>{userName}</span></h2>
-            <p className="subtitle mt-1 mb-0" style={{marginRight:"2.2rem;"}}>let's research some cypto.</p>
+            <p className="subtitle mt-1 mb-0 pb-3" style={{marginRight:"2.2rem;"}}>let's research some cypto.</p>
           </div>
+        <div className="col-sm-12 mb-2"><TopSlider/></div>
           <div className="col-sm-12 mb-1 mt-3"><CoinSearch/></div>
         </div>
         <div className="row px-3 mx-1 mb-3 pt-3">

@@ -2,10 +2,6 @@
     width:1000px;
     height:400px;
 }
-.statsTable{
-    background-color: white;
-   border-radius:5px;
-}
 table{
     font-family: 'Questrial', sans-serif;
     border: 0px !important;
@@ -16,9 +12,9 @@ table.table.table-striped.table-bordered {
     margin-bottom: 0px !important;
 }
 .row.react-bootstrap-table-pagination {
-    padding-top: 15px;
+    padding-top: 0px;
     padding-left: 10px;
-    background-color: #f6f8ff !important;
+    background-color: #ffffff00 !important;
 }
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #f8f9fd !important;
