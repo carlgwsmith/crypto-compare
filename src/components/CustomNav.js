@@ -70,7 +70,7 @@ function CustomNav(){
 }
 { currentUser && 
       <Navbar.Brand href="/Dashboard">
-        Crypto<strong>Compare</strong>
+       <RiScalesFill/> Crypto<strong>Compare</strong>
       </Navbar.Brand>
 }
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

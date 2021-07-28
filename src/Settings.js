@@ -25,7 +25,7 @@ const Settings = () => {
     }, []);
 
     if(loading){
-        return <h1>loading...</h1>;      
+        return <h1 className="pt-3 text-center">loading...</h1>;      
     }
 
     return (
