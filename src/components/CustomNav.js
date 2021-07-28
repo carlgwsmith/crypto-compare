@@ -64,7 +64,7 @@ function CustomNav(){
     <>
 <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
 { !currentUser && 
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/Home">
         <RiScalesFill/> Crypto<strong>Compare</strong>
       </Navbar.Brand>
 }
@@ -78,7 +78,7 @@ function CustomNav(){
         <Nav className="ml-auto">
           { !currentUser && 
           <>
-          <Nav.Link href="/"><BsHouse/> Home</Nav.Link>
+          <Nav.Link href="/Home"><BsHouse/> Home</Nav.Link>
             <Button variant="primary" onClick={handleShow} className="loginBtn">
               <FiLogIn/> Login
           </Button>
