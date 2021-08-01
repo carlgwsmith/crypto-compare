@@ -239,6 +239,13 @@ const CoinOverview = (props) => {
                     disabled={disabled}
                     className={`${"button-disable"}`}
                 >
+                <span><RiAddCircleFill style={{marginTop: '-2px'}}/> Lookup Another Coin</span>
+                </StyledButton>
+                <StyledButton
+                    type="button"
+                    disabled={disabled}
+                    className={`${"button-disable"}`}
+                >
                 <span><RiAddCircleFill style={{marginTop: '-2px'}}/> Already Added</span>
                 </StyledButton>
                 </>

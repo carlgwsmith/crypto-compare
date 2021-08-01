@@ -10,6 +10,7 @@ function Portfolio() {
   const [loading, setLoading] = useState(false)
   const { currentUser } = useAuth()
   const [activeIndex, setActiveIndex] = useState(0)
+  const [firstTime, setFirstTime] = useState(false)
   const [coinIndex, setCoinIndex] = useState(null)
   const [timeFrame, setTimeFrame] = useState('7d')
   let userName = ''
@@ -38,16 +39,16 @@ useEffect(() => {
       let data = (doc.data());
       if(data === undefined){
           console.log('first timer')
+          setFirstTime(true)
       }else{
           const dataArray = Object.entries(data);
           //console.log(dataArray)
           setCoins(dataArray.[0].[1])
+          console.log(coins)
       }
   }
   )
   setLoading(false)
-  
-  console.log(coins)
 }, []);
 
 useEffect(() => {
@@ -64,7 +65,7 @@ useEffect(() => {
 
 }, [coinIndex]);
 
-if(coins.length == 0){
+if(!coins){
   return <h1 className="text-center pt-4">No Coins, please add a coin to view your portfolio.</h1>
 }
   if(loading){
@@ -87,7 +88,7 @@ if(coins.length == 0){
             <button onClick={() => changeTimeFrame('30d', 1)} className={activeIndex === 1 ? "active timeBtn" : "timeBtn"}>30d</button>
             <button onClick={() => changeTimeFrame('1y', 2)} className={activeIndex === 2 ? "active timeBtn" : "timeBtn"}>1y</button>
         </span>
-        <div style={{height:'430px'}} class="fade-in">
+        <div style={{height:'430px'}} className="fade-in">
           {coins &&
             <Chart data={coins} className="chartContainer fade-in" timeFrame={timeFrame}/>
             }

@@ -18,12 +18,12 @@ function App() {
 
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <AuthProvider>
       <div className="App">
         <CustomNav/>
         <Switch>
-        <Route path="/Home" exact component={Home}/>
+        <Route path="/" exact component={Home}/>
         <Route path="/forgot-password" component={ForgotPassword}/>
         <PrivateRoute path="/Dashboard" component={Dashboard}/>
         <PrivateRoute path="/Settings" component={Settings}/>

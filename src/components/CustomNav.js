@@ -9,7 +9,7 @@ import {CgProfile} from 'react-icons/cg'
 import {FaCog} from 'react-icons/fa'
 import '../components/CSS/Nav.css'
 import { useAuth } from "../Context/AuthContext"
-import {useHistory} from "react-router-dom"
+import {useHistory, Switch, Route, Link} from "react-router-dom"
 import Login from '../components/Login'
 import ForgotPassword from './ForgotPassword'
 
@@ -37,7 +37,7 @@ function CustomNav(){
 
     try {
       await logout()
-      history.push('/')
+      history.push(process.env.PUBLIC_URL+ '/')
     }
     catch{
       setError('failed to log out')
@@ -52,6 +52,10 @@ function CustomNav(){
   const sendDataToParent2 = (remember) => {
     setForgot(remember);
   };
+
+  const sendDataToParent3 = (modal) => {
+    setShow(modal)
+  };
   
   useEffect(() => {
     const passwordStatus = forgot
@@ -64,12 +68,12 @@ function CustomNav(){
     <>
 <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
 { !currentUser && 
-      <Navbar.Brand href="/Home">
+      <Navbar.Brand as={Link} to="/">
         <RiScalesFill/> Crypto<strong>Compare</strong>
       </Navbar.Brand>
 }
 { currentUser && 
-      <Navbar.Brand href="/Dashboard">
+      <Navbar.Brand as={Link} to="/Dashboard">
        <RiScalesFill/> Crypto<strong>Compare</strong>
       </Navbar.Brand>
 }
@@ -78,7 +82,7 @@ function CustomNav(){
         <Nav className="ml-auto">
           { !currentUser && 
           <>
-          <Nav.Link href="/Home"><BsHouse/> Home</Nav.Link>
+          <Nav.Link as={Link} to="/"><BsHouse/> Home</Nav.Link>
             <Button variant="primary" onClick={handleShow} className="loginBtn">
               <FiLogIn/> Login
           </Button>
@@ -86,8 +90,8 @@ function CustomNav(){
           }
           { currentUser &&
           <>
-          <Nav.Link href="/Dashboard"><BsHouse style={{marginTop: "-6px"}}/> Home</Nav.Link>
-          <Nav.Link href="/Portfolio"><BsWallet style={{marginTop: "-6px"}}/> Portfolio</Nav.Link>
+          <Nav.Link as={Link} to="/Dashboard"><BsHouse style={{marginTop: "-6px"}}/> Home</Nav.Link>
+          <Nav.Link as={Link} to="/Portfolio"><BsWallet style={{marginTop: "-6px"}}/> Portfolio</Nav.Link>
           <Dropdown alignRight>
             <Dropdown.Toggle id="dropdown-basic" as="p">
               {/* {error && <Alert variant="danger">{error}</Alert>} */}
@@ -95,8 +99,8 @@ function CustomNav(){
                <CgProfile style={{marginTop: "-6px"}}/> {userName} <BiCaretDown style={{marginTop: "-6px"}}/>
             </Dropdown.Toggle>
             <Dropdown.Menu >
-              <Dropdown.Item href="#">Profile <CgProfile className="ddicon"/></Dropdown.Item>
-              <Dropdown.Item href="/Settings">Settings <FaCog className="ddicon"/></Dropdown.Item>
+              <Dropdown.Item as={Link} to="#">Profile <CgProfile className="ddicon"/></Dropdown.Item>
+              <Dropdown.Item as={Link} to="/Settings">Settings <FaCog className="ddicon"/></Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleLogout}>Log Out <FiLogOut className="ddicon"/></Dropdown.Item>
             </Dropdown.Menu>
@@ -111,13 +115,16 @@ function CustomNav(){
         </Modal.Header>
         <Modal.Body className="loginModal">
           {!forgot &&
-          <Login sendDataToParent={sendDataToParent}/>
+          <Login sendDataToParent={sendDataToParent} sendDataToParent3={sendDataToParent3}/>
           }
           {forgot &&
           <ForgotPassword sendDataToParent2={sendDataToParent2}/> 
           }
           </Modal.Body>
       </Modal>
+      <Switch>
+            <Route exact path='/' component={Home} />
+          </Switch>
     </>
   )
 }
