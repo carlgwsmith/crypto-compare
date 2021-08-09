@@ -26,7 +26,7 @@ useEffect(() => {
         optionsArray.push({
             id:i,
             label: coins[i].symbol + " (" + coins[i].name + ")",
-            path: process.env.PUBLIC_URL + '/coin/' + coins[i].name +'/' + coins[i].id
+            path: '/coin/' + coins[i].name +'/' + coins[i].id
         })
     }
 

@@ -78,7 +78,7 @@ export default function Login(props){
         </Card>
         <div className='w-100 text-center mt-0 pb-3'>
         <div class="separator">OR</div>
-                Need an account? <Link to="/Home">Sign Up</Link>
+                Need an account? <Link to="/">Sign Up</Link>
                 
             </div>
         </div>

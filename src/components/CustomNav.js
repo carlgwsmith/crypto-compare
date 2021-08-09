@@ -12,6 +12,7 @@ import { useAuth } from "../Context/AuthContext"
 import {useHistory, Switch, Route, Link} from "react-router-dom"
 import Login from '../components/Login'
 import ForgotPassword from './ForgotPassword'
+import Home from '../Home'
 
 function CustomNav(){
   const [show, setShow] = useState(false);
@@ -99,8 +100,8 @@ function CustomNav(){
                <CgProfile style={{marginTop: "-6px"}}/> {userName} <BiCaretDown style={{marginTop: "-6px"}}/>
             </Dropdown.Toggle>
             <Dropdown.Menu >
-              <Dropdown.Item as={Link} to="#">Profile <CgProfile className="ddicon"/></Dropdown.Item>
-              <Dropdown.Item as={Link} to="/Settings">Settings <FaCog className="ddicon"/></Dropdown.Item>
+              {/* <Dropdown.Item as={Link} to="#">Profile <CgProfile className="ddicon"/></Dropdown.Item> */}
+              <Dropdown.Item as={Link} to="/Settings">Account Settings <FaCog className="ddicon"/></Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleLogout}>Log Out <FiLogOut className="ddicon"/></Dropdown.Item>
             </Dropdown.Menu>

@@ -53,7 +53,7 @@ export default function ForgotPassword(props){
             </Card.Body>
         </Card>
         <div className='w-100 text-center mt-2 pb-4'>
-                Need an account? <Link to="/Home">Sign Up</Link>
+                Need an account? <Link to="/">Sign Up</Link>
             </div>
         </div>
     )
