@@ -4,7 +4,6 @@ import Portfolio from "./Portfolio"
 import Settings from './Settings'
 import Profile from './Profile'
 import UpdateProfile from './components/UpdateProfile'
-import Login from './components/Login'
 import CoinOverview from './components/CoinOverview'
 import ForgotPassword from './components/ForgotPassword'
 import CustomNav from './components/CustomNav'
