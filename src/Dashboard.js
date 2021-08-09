@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import CoinSearch from './components/CoinSearch'
+import Banner from './components/Banner'
 import PortfolioNews from './components/PortfolioNews'
 import TopSlider from './components/TopSlider'
 import { useAuth } from "./Context/AuthContext"
@@ -15,6 +16,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   let userName = ''
+
 
 
 
@@ -42,8 +44,7 @@ function Dashboard() {
     let userEmail= currentUser.email
     userName= userEmail.substr(0, userEmail.indexOf('@')); 
     } else {
-      userName = '';
-      setError('No user');
+      userName = ''
     }
 
   if(loading || !coins){
