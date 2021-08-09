@@ -12,7 +12,6 @@ import { useAuth } from "../Context/AuthContext"
 import {useHistory, Switch, Route, Link} from "react-router-dom"
 import Login from '../components/Login'
 import ForgotPassword from './ForgotPassword'
-import Home from '../Home'
 
 function CustomNav(){
   const [show, setShow] = useState(false);
