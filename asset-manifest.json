@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/crypto-compare/static/css/main.b7e293a7.chunk.css",
-    "main.js": "/crypto-compare/static/js/main.212793d0.chunk.js",
-    "main.js.map": "/crypto-compare/static/js/main.212793d0.chunk.js.map",
+    "main.js": "/crypto-compare/static/js/main.cdb6130c.chunk.js",
+    "main.js.map": "/crypto-compare/static/js/main.cdb6130c.chunk.js.map",
     "runtime-main.js": "/crypto-compare/static/js/runtime-main.3facce05.js",
     "runtime-main.js.map": "/crypto-compare/static/js/runtime-main.3facce05.js.map",
     "static/css/2.b7e2f3cd.chunk.css": "/crypto-compare/static/css/2.b7e2f3cd.chunk.css",
-    "static/js/2.3a5f9813.chunk.js": "/crypto-compare/static/js/2.3a5f9813.chunk.js",
-    "static/js/2.3a5f9813.chunk.js.map": "/crypto-compare/static/js/2.3a5f9813.chunk.js.map",
+    "static/js/2.cb74a6b5.chunk.js": "/crypto-compare/static/js/2.cb74a6b5.chunk.js",
+    "static/js/2.cb74a6b5.chunk.js.map": "/crypto-compare/static/js/2.cb74a6b5.chunk.js.map",
     "static/js/3.4c3d8441.chunk.js": "/crypto-compare/static/js/3.4c3d8441.chunk.js",
     "static/js/3.4c3d8441.chunk.js.map": "/crypto-compare/static/js/3.4c3d8441.chunk.js.map",
     "index.html": "/crypto-compare/index.html",
     "static/css/2.b7e2f3cd.chunk.css.map": "/crypto-compare/static/css/2.b7e2f3cd.chunk.css.map",
     "static/css/main.b7e293a7.chunk.css.map": "/crypto-compare/static/css/main.b7e293a7.chunk.css.map",
-    "static/js/2.3a5f9813.chunk.js.LICENSE.txt": "/crypto-compare/static/js/2.3a5f9813.chunk.js.LICENSE.txt",
+    "static/js/2.cb74a6b5.chunk.js.LICENSE.txt": "/crypto-compare/static/js/2.cb74a6b5.chunk.js.LICENSE.txt",
     "static/media/slick-theme.css": "/crypto-compare/static/media/slick.c94f7671.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.3facce05.js",
     "static/css/2.b7e2f3cd.chunk.css",
-    "static/js/2.3a5f9813.chunk.js",
+    "static/js/2.cb74a6b5.chunk.js",
     "static/css/main.b7e293a7.chunk.css",
-    "static/js/main.212793d0.chunk.js"
+    "static/js/main.cdb6130c.chunk.js"
   ]
 }
