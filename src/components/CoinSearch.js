@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import InputGroup from 'react-bootstrap/InputGroup'
 import { BiSearchAlt } from "react-icons/bi";
+import {useHistory} from 'react-router-dom';
 
 import {
   Highlighter,
@@ -19,6 +20,7 @@ const [coins, setCoins] = useState([])
 const [loading, setLoading] = useState(false)
 const [error, setError] = useState('')
 const [options, setOptions] =useState([])
+const history = useHistory()
 
 useEffect(() => {
   let optionsArray = []
@@ -79,7 +81,7 @@ return(
         {results.map((result, idx) => (
           <MenuItem
             key={idx}
-            onClick={() => window.open(result.path)}
+            onClick={() => history.push(result.path)}
             selected={(e) => console.log(e)}
             option={result}
             position={idx}>
