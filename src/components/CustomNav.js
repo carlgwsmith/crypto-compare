@@ -123,9 +123,9 @@ function CustomNav(){
           }
           </Modal.Body>
       </Modal>
-      <Switch>
+      {/* <Switch>
             <Route exact path='/' component={Home} />
-          </Switch>
+          </Switch> */}
     </>
   )
 }
