@@ -38,7 +38,7 @@ function CustomNav(){
 
     try {
       await logout()
-      history.push(process.env.PUBLIC_URL+ '/')
+      history.push(process.env.PUBLIC_URL)
     }
     catch{
       setError('failed to log out')

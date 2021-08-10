@@ -4,7 +4,6 @@ import Portfolio from "./Portfolio"
 import Settings from './Settings'
 import Profile from './Profile'
 import UpdateProfile from './components/UpdateProfile'
-import Login from './components/Login'
 import CoinOverview from './components/CoinOverview'
 import ForgotPassword from './components/ForgotPassword'
 import CustomNav from './components/CustomNav'
@@ -15,8 +14,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import PrivateRoute from './components/PrivateRoute'
 
 function App() {
-
-
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <AuthProvider>
