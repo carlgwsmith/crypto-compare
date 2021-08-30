@@ -60,7 +60,7 @@ function Dashboard() {
             <p className="subtitle mt-1 mb-0 pb-3" style={{marginRight:"2.2rem;"}}>let's research some cypto.</p>
           </div>
         <div className="col-sm-12 mb-2"><TopSlider/></div>
-          <div className="col-sm-12 mb-1 mt-3"><CoinSearch/></div>
+          <div className="col-sm-12 mb-1 mt-3 p-2"><CoinSearch/></div>
         </div>
         <div className="row px-3 mx-1 mb-3 pt-3">
           <div className="col-sm-6 mx-0 px-0">

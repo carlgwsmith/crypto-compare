@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Chart from '../components/TinyChart'
+import { useHistory } from "react-router-dom";
 import '../components/CSS/Overview.css'
 import {Button} from 'react-bootstrap'
 import {FaGlobeAmericas, FaCheckCircle} from 'react-icons/fa'
@@ -30,12 +31,17 @@ const CoinOverview = (props) => {
 
     const coinId = props.match.params.coinId
     const coinName = props.match.params.coinName
+    let RouterHistory = useHistory();
 
     function changeTimeFrame(time, index){
         setTimeFrame(time)
         setActiveIndex(index)
     }
     
+    function search(){
+        RouterHistory.push("/Dashboard");
+    }
+
     function getCoins(){
         setLoading(true)
         database.users.doc(currentUser.uid).get().then(
@@ -236,18 +242,18 @@ const CoinOverview = (props) => {
                 <a style={{fontSize: "15px", marginRight: "10px"}} href={coin.websiteUrl}><FaGlobeAmericas size="2em" style={{color: '#c3c3c3'}}/></a>
                 <StyledButton
                     type="button"
-                    disabled={disabled}
+                    onClick={search}
                     className={`${"button-disable"}`}
                 >
                 <span><RiAddCircleFill style={{marginTop: '-2px'}}/> Lookup Another Coin</span>
                 </StyledButton>
-                <StyledButton
+                {/* <StyledButton
                     type="button"
                     disabled={disabled}
                     className={`${"button-disable"}`}
                 >
                 <span><RiAddCircleFill style={{marginTop: '-2px'}}/> Already Added</span>
-                </StyledButton>
+                </StyledButton> */}
                 </>
                 }
                 </div>
@@ -302,7 +308,7 @@ const CoinOverview = (props) => {
                 </div>
             </div>
             {news &&
-            <div className="row p-3">
+            <div className="row p-3 m-1">
                 <div className="col-sm-12">
                     <h3>{coin.name} News</h3>
                 </div>

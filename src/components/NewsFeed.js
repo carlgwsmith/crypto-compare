@@ -19,7 +19,7 @@ const NewsFeed = (props) => {
     return (
         <>
             {news.slice(0,6).map((article, index) => (
-              <div key={index} className="col-sm-4">
+              <div key={index} className="col-sm-4 pl-0">
                 <div className="news">
                 <a href={article.link}>
                   <img style={{backgroundImage: "url('"+article.media +"')"}} className="articleImage"></img>

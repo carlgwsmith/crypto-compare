@@ -79,8 +79,8 @@ if(!coins){
             <p className="subtitle mt-1 mb-0 pb-3" style={{marginRight:"2.2rem;"}}>let's compare the crypto you've selected.</p>
           </div>
         </div>
-        <div className="row px-2 mx-1">
-        <div className="col-sm-12 col-md-8">
+        <div className="row px-2 mx-4">
+        <div className="col-sm-12 col-md-8 pr-4">
         <h3 style={{marginBottom:"0px", paddingLeft: "10px"}}>Pricing History</h3>
         <p className="subtitle" style={{display:"inline-block", marginTop:"10px", paddingLeft: "10px"}}>Below is a chart of all of your coins and their pricing history.</p>
         <span className="timeButtons" style={{marginTop:"8px"}}>
