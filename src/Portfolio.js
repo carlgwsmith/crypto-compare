@@ -3,6 +3,7 @@ import { useAuth } from "./Context/AuthContext"
 import {database} from "./firebase"
 import Chart from "./components/PortfolioChart"
 import Wallet from './components/Wallet'
+import PortfolioDetailTable from './components/PortfolioCoinDetailTable';
 
 function Portfolio() {
 
@@ -110,7 +111,10 @@ if(!coins){
         </div>
         ))}
         </div>
+        <div className="col-sm-12 mt-4">
+          <PortfolioDetailTable data={coins}/>
         </div>
+      </div>
     </div>
   );
 }
