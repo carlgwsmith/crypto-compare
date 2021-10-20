@@ -18,7 +18,7 @@ html,body
 .heroSection{
   padding-top:130px;
   background-repeat: no-repeat;
-  background-size: cover; 
+  background-size: contain; 
 }
 .heroh1{
     font-size: 6em;
@@ -26,6 +26,9 @@ html,body
     line-height: .8;
     color: #435e68 !important;
     text-shadow:2px 2px 5px white;
+}
+.heroInner{
+  padding-left: 30px;
 }
 .subtitle{
   font-size:1rem;
