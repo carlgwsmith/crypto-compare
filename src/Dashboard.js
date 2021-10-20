@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import CoinSearch from './components/CoinSearch'
-import Banner from './components/Banner'
 import PortfolioNews from './components/PortfolioNews'
 import TopSlider from './components/TopSlider'
 import { useAuth } from "./Context/AuthContext"

@@ -13,12 +13,14 @@ const [data, setData] = useState([])
 const [loading, setLoading] = useState(false)
 
 useEffect(() => {
-  getHis()
+  setData([])
+  getCoinData()
 }, [props.data]);
 
 
-function getHis(){
+function getCoinData(){
   setLoading(true)
+  console.log(props.data)
   for (let i = 0; i < props.data.length; i++){
     fetch("https://coinranking1.p.rapidapi.com/coin/"+props.data.[i].id, {
 "method": "GET",
@@ -31,12 +33,22 @@ function getHis(){
   response.json().then((json) => {
     setData(data => [...data,
       {
-        id: props.data.[i].id,
-        name: props.data.[i].name,
-        history: json.data.history,
-        color:props.data.[i].color
+
+        name: json.data.coin.name,
+        change: json.data.coin.change,
+        markets:json.data.coin.markets,
+        symbol: json.data.coin.symbol,
+        listedAt: json.data.coin.listedAt,
+        totalSupply: json.data.coin.totalSupply,
+        circulatingSupply: json.data.coin.circulatingSupply,
+        marketCap: json.data.coin.marketCap,
+        rank:json.data.coin.rank,
+        color:json.data.coin.color,
+        icon: json.data.coin.iconUrl,
+        price: json.data.coin.price,
       }
     ])
+    console.log(data)
   })
   }
 })
@@ -45,7 +57,7 @@ function getHis(){
 }
 
 function imageFormatter(cell, row){
-  return (<span><img src={row.sourceIconUrl} width="25px" style={{paddingRight:"10px"}}alt="market logo"/>{row.sourceName} ({row.baseSymbol})</span>) ;
+  return (<img src={row.icon} width="25px" style={{paddingRight:"10px"}} alt="market logo"/>) ;
 }
 
 function twoDeci(cell, row){
@@ -57,32 +69,49 @@ function twoDeciDollar(cell, row){
 
 const columns = [
   {
+    text: "",
+    dataField:"icon",
+    width:"40",
+    sort: false,
+    classes: 'mktNameCol',
+    formatter: imageFormatter,
+  },
+  {
+    dataField:"name",
+    text:"Name",
+    sort: true,
+  },
+  {
+    text: "Price",
+    dataField:"price",
+    sort: false,
+    formatter: twoDeciDollar,
+  },
+  {
     dataField: "rank",
     text: "Rank",
     sort: true,
     classes: 'rankCol'
   },
   {
-    text: "Market Name",
-    dataField:"sourceIconUrl",
-    width:"40",
-    sort: false,
-    classes: 'mktNameCol',
-    formatter: imageFormatter
+    dataField:"change",
+    text:"Change",
+    sort: true,
   },
   {
-    dataField: "marketShare",
-    text: "Market Share",
-    formatter:twoDeci,
-    classes: 'mktShareCol',
-    sort: true
+    dataField:"marketCap",
+    text:"Market Cap",
+    sort: true,
   },
   {
-    dataField: "volume",
-    text: "Total Volume",
-    classes: 'mktVolCol',
-    formatter:twoDeciDollar,
-    sort: true
+    dataField:"circulatingSupply",
+    text:"Circulating Supply",
+    sort: true,
+  },
+  {
+    dataField:"listedAt",
+    text:"Listed At",
+    sort: true,
   }
 ];
 

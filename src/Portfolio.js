@@ -59,7 +59,7 @@ useEffect(() => {
   console.log(coinToRemove)
 
   var mod = coinCopy.filter(x => {
-    return x.id != coinToRemove
+    return x.id !== coinToRemove
   })
 
   setCoins(mod)
@@ -103,7 +103,7 @@ if(!coins){
         </div>
         </div> */}
         <div className="col-sm-12 col-md-4 mb-4 pb-4">
-        <h3 style={{paddingLeft: "10px", paddingLeft: "10px"}}>Coins</h3>
+        <h3 style={{paddingLeft: "10px"}}>Coins</h3>
         <p className="subtitle">Below is a list of the coins in your portfolio.</p>
         {coins.map((coin, index) => (
         <div key={index}>
@@ -111,7 +111,9 @@ if(!coins){
         </div>
         ))}
         </div>
-        <div className="col-sm-12 mt-4">
+        <div className="col-sm-12 mt-4 mb-5">
+        <h3 style={{marginBottom:"0px", paddingLeft: "10px"}}>Coin Market Statistics</h3>
+        <p className="subtitle" style={{display:"inline-block", marginTop:"10px", paddingLeft: "10px"}}>Below is a table of your coins and the current market stats.</p>
           <PortfolioDetailTable data={coins}/>
         </div>
       </div>
