@@ -22,12 +22,11 @@ function getCoinData(){
   setLoading(true)
   console.log(props.data)
   for (let i = 0; i < props.data.length; i++){
-    fetch("https://coinranking1.p.rapidapi.com/coin/"+props.data.[i].id, {
+    fetch("https://api.coinranking.com/v2/coin/"+props.data.[i].id, {
 "method": "GET",
 "headers": {
-  "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
-  "x-rapidapi-host": "coinranking1.p.rapidapi.com"
-}
+  "x-access-token": process.env.REACT_APP_COINRANKING_API_KEY
+  }
 }).then(response => {
   if(response.ok){
   response.json().then((json) => {

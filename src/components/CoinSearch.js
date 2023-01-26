@@ -42,12 +42,11 @@ useEffect(() => {
 
 
 useEffect(() => {
-  fetch("https://coinranking1.p.rapidapi.com/coins?limit=100", {
+  fetch("https://api.coinranking.com/v2/coins?limit=100", {
       "method": "GET",
       "headers": {
-          "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
-          "x-rapidapi-host": "coinranking1.p.rapidapi.com"
-      }
+        "x-access-token": process.env.REACT_APP_COINRANKING_API_KEY
+        }
   })
   .then(response => {
       if(response.ok){
